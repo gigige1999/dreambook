@@ -635,7 +635,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-serif-body font-medium bg-[#3B2415] hover:bg-[#4D301D] border border-[#C89F55]/65 rounded-[3px] shadow-sm transition-colors whitespace-nowrap shrink-0"
         >
           <ArrowLeft className="w-3.5 h-3.5 text-[#E5C175]" />
-          <span>放回橡木书桌</span>
+          <span>合上书</span>
         </button>
 
         <div className="flex items-center gap-2.5">
@@ -650,7 +650,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
               }`}
             >
               <Eye className="w-3.5 h-3.5" />
-              <span>{isMagnifierActive ? '持镜中（划过右页显影）' : '拿起黄铜放大镜'}</span>
+              <span>{isMagnifierActive ? '持镜中' : '放大镜'}</span>
             </button>
           )}
 
@@ -678,8 +678,8 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
               {allCollected
                 ? bookViewPhase === 'doorway'
                   ? '推开梦境门扉'
-                  : '合卷启扉 · 进入梦境'
-                : `收集信物 ${collectedEvidenceIds.length}/${currentCase.evidence.length}`}
+                  : '入梦'
+                : `信物 ${collectedEvidenceIds.length}/${currentCase.evidence.length}`}
             </span>
           </button>
         </div>
@@ -1141,7 +1141,6 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
                     <span className="font-mono text-[10.5px] text-[#8E2D20]">
                       {ROMAN_PAGES[idx]}
                     </span>
-                    <span>第 {idx + 1} 页</span>
                     {pageDone && <Check className="w-3.5 h-3.5 text-[#8E2D20]" />}
                   </button>
                 );

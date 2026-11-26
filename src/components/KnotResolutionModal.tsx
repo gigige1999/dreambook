@@ -1347,7 +1347,7 @@ export const KnotResolutionModal: React.FC<KnotResolutionModalProps> = ({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-serif-body font-medium bg-[#2C1E14]/92 hover:bg-[#1E130C] border border-[#B89258]/80 rounded-sm shadow-md transition-colors whitespace-nowrap shrink-0"
             >
               <ArrowLeft className="w-3.5 h-3.5 text-[#E5C175]" />
-              <span>离开牌桌</span>
+              <span>离开</span>
             </button>
 
             <button
@@ -1356,7 +1356,7 @@ export const KnotResolutionModal: React.FC<KnotResolutionModalProps> = ({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-serif-body font-medium bg-[#2C1E14]/92 hover:bg-[#1E130C] border border-[#B89258]/80 rounded-sm shadow-md transition-colors whitespace-nowrap shrink-0"
             >
               <BookOpen className="w-3.5 h-3.5 text-[#E5C175]" />
-              <span>重翻《{currentCase.bookTitle}》</span>
+              <span>翻回书页</span>
             </button>
           </div>
 

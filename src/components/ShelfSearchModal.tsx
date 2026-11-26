@@ -566,16 +566,11 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
               />
               <div className="min-w-0">
                 <h2 className="font-display text-sm sm:text-[15px] font-semibold text-[#262019] leading-tight truncate">
-                  寻书：《{currentCase.bookTitle}》
+                  《{currentCase.bookTitle}》
                   <span className="ml-2 font-mono text-[11px] font-normal text-[#746856] tabular-nums">
                     {currentCase.bookCallNumber}
                   </span>
                 </h2>
-                <p className="text-[11px] font-serif-body text-[#6B6152] truncate">
-                  {isLampOn
-                    ? '台灯暖光正映出「✦」所在季节馆区'
-                    : '探索三层手绘藏书阁与底座抽屉'}
-                </p>
               </div>
             </div>
           </div>
@@ -637,7 +632,7 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                         ✦
                       </span>
                     )}
-                    <span>{zone.name}</span>
+                    <span>{zone.seasonName}</span>
                   </button>
                 );
               })}
@@ -678,9 +673,6 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
             <div className="hidden sm:flex absolute top-2 left-2.5 z-30 items-center gap-2 px-2.5 py-1 rounded bg-[#2B1D13]/92 border border-[#C6A25E]/75 text-[#FAF0DA]">
               <span className="font-display text-xs font-semibold tracking-wide">
                 {wingTheme.plaqueTitle}
-              </span>
-              <span className="text-[10px] font-serif-body text-[#DEC89F] hidden md:inline">
-                · {zoneMeta.englishSubtitle}
               </span>
             </div>
 
@@ -726,33 +718,6 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                 </button>
               </div>
             </div>
-
-            {/* Left/Right Wing Turn Tabs */}
-            <button
-              type="button"
-              onClick={() => stepWing(-1)}
-              aria-label={`切换到${prevZone.name}`}
-              title={`左转：${prevZone.name}`}
-              className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-1 px-1.5 py-2.5 rounded-md bg-[#2E1F14]/90 hover:bg-[#422D1D] border-[1.5px] border-[#D6B067]/75 text-[#FAF0DA] transition-colors"
-            >
-              <ChevronLeft className="w-3.5 h-3.5 text-[#F0CB79]" />
-              <span className="text-[10px] font-serif-body tracking-widest [writing-mode:vertical-rl]">
-                {prevZone.seasonName}之阁
-              </span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => stepWing(1)}
-              aria-label={`切换到${nextZone.name}`}
-              title={`右转：${nextZone.name}`}
-              className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-30 flex-col items-center gap-1 px-1.5 py-2.5 rounded-md bg-[#2E1F14]/90 hover:bg-[#422D1D] border-[1.5px] border-[#D6B067]/75 text-[#FAF0DA] transition-colors"
-            >
-              <ChevronRight className="w-3.5 h-3.5 text-[#F0CB79]" />
-              <span className="text-[10px] font-serif-body tracking-widest [writing-mode:vertical-rl]">
-                {nextZone.seasonName}之阁
-              </span>
-            </button>
 
             {/* SCROLLABLE FULL-SCALE BOOKCASE STAGE */}
             <div
@@ -1272,7 +1237,7 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
             <div className="flex items-center gap-2 text-xs font-serif-body text-[#645A4A]">
               <BookOpen className="w-4 h-4 shrink-0 text-[#8D6E48]" />
               <span>
-                拉开底座木抽屉寻找「小铜钥匙 / 发条上弦匙 / 拆信刀 / 暖铜融雪匙」，解开四季书架机关并取回《{currentCase.bookTitle}》。
+                先翻抽屉找钥匙与工具，再解开书架上亮金框的机关。
               </span>
             </div>
           )}

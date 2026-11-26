@@ -21,8 +21,6 @@ import {
   SeasonSigilIcon,
 } from './VisualKeepsakes';
 
-type DeskPropId = 'lamp' | 'tea' | 'magnifier';
-
 interface LibraryStageProps {
   phase: GamePhase;
   currentCase: GuestCase;
@@ -44,7 +42,7 @@ interface LibraryStageProps {
   onOpenArchive: () => void;
 }
 
-const LIBRARY_BACKDROP = '/src/assets/images/library_interior_rusty_fresh_1795439953648.jpg';
+const LIBRARY_BACKDROP = '/src/assets/scene/hall-main.jpg';
 
 const GUEST_MAGNIFIER_OBSERVATIONS: Record<string, string> = {
   spring: '透过黄铜镜片，你看见伊索尔德指尖沾着细碎的金色花粉，袖口还别着一枚褪色的枯萎花芽标本。',
@@ -146,7 +144,6 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
 }) => {
   const [activeEggId, setActiveEggId] = useState<string | null>(null);
   const [whisperOpen, setWhisperOpen] = useState(false);
-  const [hoveredProp, setHoveredProp] = useState<DeskPropId | null>(null);
   const [inspectedGuestIds, setInspectedGuestIds] = useState<string[]>([]);
   const [loupePos, setLoupePos] = useState<{ x: number; y: number } | null>(null);
 
@@ -161,45 +158,6 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
     (c) => c.easterEgg
   );
   const activeEgg = unlockedEggs.find((e) => e.id === activeEggId) ?? null;
-
-  const propMetaMap: Record<
-    DeskPropId,
-    { title: string; status: string; usage: string; actionHint: string }
-  > = {
-    lamp: {
-      title: '映墨暖灯',
-      status: isLampOn ? '已点亮指路' : '晨雾微暗',
-      usage: '点亮后，正厅两侧书架会为目标书籍所在的馆区亮起「✦ 暖灯指路」，书架内也会标出目标区。',
-      actionHint: isLampOn ? '点击切换为微暗晨雾光影' : '点击立即点亮台灯并照亮目标书架方向',
-    },
-    tea: {
-      title: '洋甘菊热茶',
-      status: hasServedTea ? `已奉予 ${currentCase.guestName}` : '待端给访客',
-      usage: '点击即可请客人入座并奉上热茶，直接解锁破咒秘语、明确索书指引与牌桌花茶护佑。',
-      actionHint: hasServedTea
-        ? '再次轻触可获得当前阶段的贴心指路提示'
-        : '点击立即奉茶套取关键线索',
-    },
-    magnifier: {
-      title: '黄铜放大镜',
-      status: isMagnifierActive ? '持镜巡检中' : '放置于案头',
-      usage: '拿起后可直接点击访客肖像细察隐藏特征，也能在「书架抽屉」与「梦境书第 4 页」照出暗字。',
-      actionHint: isMagnifierActive ? '点击放回案头' : '点击拿起黄铜放大镜并开启主厅细察模式',
-    },
-  };
-
-  const activeHoverMeta = hoveredProp ? propMetaMap[hoveredProp] : null;
-
-  const renderHoverPropArt = (propId: DeskPropId) => {
-    switch (propId) {
-      case 'lamp':
-        return <DeskLampArt isOn={isLampOn} className="w-9 h-9 shrink-0" />;
-      case 'tea':
-        return <DeskTeacupArt className="w-9 h-9 shrink-0" />;
-      case 'magnifier':
-        return <DeskMagnifierArt active={isMagnifierActive} className="w-9 h-9 shrink-0" />;
-    }
-  };
 
   const handleInteractKeepsake = () => {
     if (currentCase.giftKeepsake.interactiveType === 'silver-bell') {
@@ -237,8 +195,14 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
         alt="阳光洒落的英伦复古梦境图书馆内部，远处是半掩的木质大门与四周书架"
         fallbackTitle="晨露梦境图书馆大厅"
         className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-500 ${
-          isLampOn ? 'brightness-105 saturate-105' : 'brightness-[0.68] saturate-[0.76]'
+          isLampOn ? 'brightness-[0.94] saturate-[1.02]' : 'brightness-[0.62] saturate-[0.74]'
         }`}
+      />
+
+      {/* Base Scrim: 让羊皮纸案头笺浮出于素净墙面之上 */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_46%,rgba(24,17,11,0.12)_0%,rgba(17,12,8,0.46)_76%,rgba(11,7,4,0.66)_100%)]"
       />
 
       {/* Ambient Morning & Lamp Lighting */}
@@ -300,125 +264,80 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
         </div>
       )}
 
-      {/* TOP-LEFT WALNUT & BRASS DESK TOOL CADDY (Genuinely interactive on main stage) */}
+      {/* 案头三件器物：仅图标与一词标签 */}
       <div className="absolute top-3 left-3 sm:left-4 z-20 flex flex-col items-start gap-2">
-        <div className="flex items-center gap-1 rounded-[3px] border-[1.5px] border-[#241B14] bg-gradient-to-b from-[#4B2F1B] to-[#311E10] p-1 shadow-[0_10px_22px_rgba(14,8,4,0.48)] text-[#241B14]">
+        <div className="flex items-center gap-1 rounded-[3px] border-[1.5px] border-[#241B14] bg-gradient-to-b from-[#4B2F1B] to-[#311E10] p-1 shadow-[0_10px_22px_rgba(14,8,4,0.48)]">
           <button
             type="button"
             onClick={onToggleLamp}
-            onMouseEnter={() => setHoveredProp('lamp')}
-            onMouseLeave={() => setHoveredProp(null)}
-            onFocus={() => setHoveredProp('lamp')}
-            onBlur={() => setHoveredProp(null)}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[2px] border transition-all whitespace-nowrap shrink-0 ${
+            title={isLampOn ? '熄灭暖灯' : '点亮暖灯'}
+            className={`inline-flex items-center justify-center px-2 py-1 rounded-[2px] border transition-all shrink-0 ${
               isLampOn
                 ? 'bg-gradient-to-b from-[#FAF0D4] to-[#EBD6A8] border-[#C89F55] text-[#5B3A14] font-semibold shadow-xs'
                 : 'bg-[#3C2617] border-[#6A4A2E] text-[#DCC6A0] hover:bg-[#4A301D]'
             }`}
           >
             <DeskLampArt isOn={isLampOn} className="w-5 h-5 shrink-0" />
-            <span className="text-[11px] font-serif-body">
-              {isLampOn ? '暖灯·指路中' : '暖灯·已熄'}
-            </span>
           </button>
 
           <button
             type="button"
             onClick={onServeTea}
-            onMouseEnter={() => setHoveredProp('tea')}
-            onMouseLeave={() => setHoveredProp(null)}
-            onFocus={() => setHoveredProp('tea')}
-            onBlur={() => setHoveredProp(null)}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[2px] border transition-all whitespace-nowrap shrink-0 ${
+            title={hasServedTea ? '再讨一句提示' : '奉上洋甘菊茶'}
+            className={`inline-flex items-center justify-center px-2 py-1 rounded-[2px] border transition-all shrink-0 ${
               hasServedTea
                 ? 'bg-gradient-to-b from-[#FAF0D4] to-[#EBD6A8] border-[#C89F55] text-[#6B3B16] font-semibold shadow-xs'
                 : 'bg-[#FAF1D8] border-[#9E7C4B] text-[#3B291C] hover:bg-[#FFF8E4]'
             }`}
           >
             <DeskTeacupArt className="w-5 h-5 shrink-0" />
-            <span className="text-[11px] font-serif-body">
-              {hasServedTea ? '花茶·续茶提示' : '奉洋甘菊茶'}
-            </span>
           </button>
 
           <button
             type="button"
             onClick={onToggleMagnifier}
-            onMouseEnter={() => setHoveredProp('magnifier')}
-            onMouseLeave={() => setHoveredProp(null)}
-            onFocus={() => setHoveredProp('magnifier')}
-            onBlur={() => setHoveredProp(null)}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[2px] border transition-all whitespace-nowrap shrink-0 ${
+            title={isMagnifierActive ? '放回放大镜' : '拿起放大镜'}
+            className={`inline-flex items-center justify-center px-2 py-1 rounded-[2px] border transition-all shrink-0 ${
               isMagnifierActive
                 ? 'bg-[#8E2D20] border-[#E5C175] text-[#FAF3E2] font-semibold shadow-xs'
                 : 'bg-[#FAF1D8] border-[#9E7C4B] text-[#3B291C] hover:bg-[#FFF8E4]'
             }`}
           >
             <DeskMagnifierArt active={isMagnifierActive} className="w-5 h-5 shrink-0" />
-            <span className="text-[11px] font-serif-body">
-              {isMagnifierActive ? '持镜细察中' : '黄铜放大镜'}
-            </span>
           </button>
         </div>
 
-        {isMagnifierActive && !activeHoverMeta && !propNotice && (
+        {isMagnifierActive && !propNotice && (
           <div className="rounded-[2px] border border-[#C89F55] bg-[#362113]/92 px-3 py-1.5 text-[11px] font-serif-body text-[#F8E7C0] shadow-md">
-            持镜巡检已开启：请点击下方访客肖像细察人物特征，或前往书架/梦境书第 4 页照出暗字。
+            点击肖像或书页细察暗痕
           </div>
         )}
 
-        {(activeHoverMeta || propNotice) && (
+        {propNotice && (
           <div
             role="status"
             className="relative w-72 sm:w-80 rounded-[3px] bg-vintage-folio desk-ink-card text-[#241B14] p-2.5"
           >
             <VictorianCornerFiligree color="#8A6332" sizeClass="w-3.5 h-3.5" />
-            {activeHoverMeta && hoveredProp ? (
-              <div className="flex items-start gap-2.5">
-                {renderHoverPropArt(hoveredProp)}
-                <div className="min-w-0 flex-1 space-y-0.5">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="font-display text-xs font-semibold text-[#241B14]">
-                      {activeHoverMeta.title}
-                    </p>
-                    <span className="text-[10px] font-serif-body text-[#7C5E3E] whitespace-nowrap">
-                      {activeHoverMeta.status}
-                    </span>
-                  </div>
-                  <p className="text-[11px] font-serif-body text-[#3E3125] leading-relaxed">
-                    {activeHoverMeta.usage}
-                  </p>
-                  <p className="text-[10px] font-serif-body text-[#8E2D20]">
-                    {activeHoverMeta.actionHint}
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-[11px] font-serif-body text-[#241B14] leading-relaxed">
-                  {propNotice}
-                </p>
-                <button
-                  type="button"
-                  onClick={onDismissNotice}
-                  aria-label="关闭提示"
-                  className="p-0.5 text-[#7A634A] hover:text-[#241B14] shrink-0"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            )}
+            <div className="flex items-start justify-between gap-2">
+              <p className="text-[11px] font-serif-body text-[#241B14] leading-relaxed">{propNotice}</p>
+              <button
+                type="button"
+                onClick={onDismissNotice}
+                aria-label="关闭提示"
+                className="p-0.5 text-[#7A634A] hover:text-[#241B14] shrink-0"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         )}
       </div>
 
-      {/* UNLOCKED OUTDOOR SEASONAL EASTER EGGS (Top-Right Window / Threshold Sill) */}
+      {/* 馆外季节彩蛋：解锁后仅以图标悬浮于右上 */}
       {unlockedEggs.length > 0 && (
         <div className="absolute top-3 right-4 z-20 flex flex-col items-end gap-2">
-          <div className="flex items-center gap-1.5 rounded-[3px] border-[1.5px] border-[#3B291C] bg-vintage-folio px-2.5 py-1 shadow-[0_6px_14px_rgba(18,10,5,0.34)]">
-            <span className="text-[10.5px] font-serif-body text-[#4F3F2D] whitespace-nowrap">
-              馆外季节彩蛋：
-            </span>
+          <div className="flex items-center gap-1 rounded-[3px] border border-[#3B291C]/70 bg-vintage-folio/85 px-1.5 py-1 shadow-[0_6px_14px_rgba(18,10,5,0.3)]">
             {unlockedEggs.map((egg) => (
               <button
                 key={egg.id}
@@ -433,16 +352,14 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
                   activeEggId === egg.id ? 'bg-[#E9DEC4] ring-1 ring-[#8E2D20]' : ''
                 }`}
               >
-                <SeasonalEggArtwork season={egg.season} className="w-6 h-6" />
+                <SeasonalEggArtwork season={egg.season} className="w-5 h-5" />
               </button>
             ))}
           </div>
 
           {activeEgg && (
             <div className="relative w-64 rounded-[3px] bg-vintage-folio desk-ink-card p-2.5 text-[#241B14]">
-              <p className="font-display text-xs font-semibold text-[#241B14]">
-                {activeEgg.title}
-              </p>
+              <p className="font-display text-xs font-semibold text-[#241B14]">{activeEgg.title}</p>
               <p className="mt-1 font-serif-body text-[11px] text-[#45392C] leading-relaxed">
                 {activeEgg.detail}
               </p>
@@ -451,85 +368,41 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
         </div>
       )}
 
-      {/* Left & Right Bookcase Index Plates (Illuminated by Lamp When ON) */}
+      {/* 两侧书架入口：单行，仅在可点击时出现 */}
       {canClickShelves && (
         <>
           <button
             type="button"
             onClick={onOpenShelves}
             aria-label="查看西侧春夏书架"
-            className={`group hidden md:flex flex-col items-center justify-center absolute left-5 lg:left-8 top-[46%] -translate-y-1/2 px-3.5 py-3 rounded-[3px] text-[#FAF2E2] border-[1.5px] transition-all duration-200 hover:-translate-y-[52%] ${
+            className={`group absolute left-5 lg:left-8 top-[46%] -translate-y-1/2 inline-flex items-center gap-2 rounded-[3px] px-3.5 py-2 text-[#FAF2E2] border-[1.5px] transition-all duration-200 hover:-translate-y-[54%] ${
               isLampOn && isTargetWestWing
                 ? 'bg-[#422B18] border-[#F0C86E] shadow-[0_0_24px_rgba(245,198,96,0.45)]'
                 : 'bg-[#2D1E13]/92 hover:bg-[#3C2819] border-[#C6A25E]/80 shadow-[0_12px_26px_rgba(14,8,4,0.5)]'
             }`}
           >
-            <VictorianCornerFiligree color="#C6A25E" sizeClass="w-3.5 h-3.5" />
-            <Search className="w-3.5 h-3.5 text-[#E8C472] mb-1 transition-transform group-hover:scale-110" />
-            <span className="font-display text-xs font-medium tracking-wide whitespace-nowrap">
-              西侧书架
-            </span>
-            <span className="text-[10px] font-serif-body text-[#D4BE98] whitespace-nowrap">
-              {isLampOn && isTargetWestWing ? '✦ 暖灯指路' : '春夏藏阁'}
-            </span>
+            <Search className="w-3.5 h-3.5 text-[#E8C472] transition-transform group-hover:scale-110" />
+            <span className="font-display text-xs tracking-wide whitespace-nowrap">春夏</span>
           </button>
 
           <button
             type="button"
             onClick={onOpenShelves}
             aria-label="查看东侧秋冬书架"
-            className={`group hidden md:flex flex-col items-center justify-center absolute right-5 lg:right-8 top-[46%] -translate-y-1/2 px-3.5 py-3 rounded-[3px] text-[#FAF2E2] border-[1.5px] transition-all duration-200 hover:-translate-y-[52%] ${
+            className={`group absolute right-5 lg:right-8 top-[46%] -translate-y-1/2 inline-flex items-center gap-2 rounded-[3px] px-3.5 py-2 text-[#FAF2E2] border-[1.5px] transition-all duration-200 hover:-translate-y-[54%] ${
               isLampOn && isTargetEastWing
                 ? 'bg-[#422B18] border-[#F0C86E] shadow-[0_0_24px_rgba(245,198,96,0.45)]'
                 : 'bg-[#2D1E13]/92 hover:bg-[#3C2819] border-[#C6A25E]/80 shadow-[0_12px_26px_rgba(14,8,4,0.5)]'
             }`}
           >
-            <VictorianCornerFiligree color="#C6A25E" sizeClass="w-3.5 h-3.5" />
-            <BookOpen className="w-3.5 h-3.5 text-[#E8C472] mb-1 transition-transform group-hover:scale-110" />
-            <span className="font-display text-xs font-medium tracking-wide whitespace-nowrap">
-              东侧书架
-            </span>
-            <span className="text-[10px] font-serif-body text-[#D4BE98] whitespace-nowrap">
-              {isLampOn && isTargetEastWing ? '✦ 暖灯指路' : '秋冬藏阁'}
-            </span>
+            <BookOpen className="w-3.5 h-3.5 text-[#E8C472] transition-transform group-hover:scale-110" />
+            <span className="font-display text-xs tracking-wide whitespace-nowrap">秋冬</span>
           </button>
         </>
       )}
 
       {/* Stage Center: Doorway Guest Arrival OR Seated Guest Across the Desk */}
       <div className="relative z-10 h-full max-w-5xl mx-auto px-4 sm:px-8 flex items-end justify-center pb-2">
-        {phase === 'GUEST_ARRIVING' && (
-          <div className="mb-3 flex flex-col items-center text-center">
-            <button
-              type="button"
-              onClick={onWelcomeGuest}
-              className="group relative flex flex-col items-center focus-visible:outline-2 focus-visible:outline-[#B55C40]"
-            >
-              {/* Rectangular Victorian Cabinet Portrait */}
-              <div className="relative w-26 sm:w-30 aspect-[3/4] rounded-[3px] p-1.5 bg-[#3B2415] border-[2px] border-[#C89F55] shadow-[0_20px_38px_rgba(16,8,4,0.58)] transition-transform duration-300 group-hover:scale-[1.03]">
-                <div className="relative w-full h-full rounded-[2px] p-1 bg-[#FAF3DE] border border-[#7C572C]">
-                  <AntiquePhotoCorners tone="brass" />
-                  <div className="w-full h-full overflow-hidden border border-[#9E783B]/65">
-                    <ResilientImage
-                      src={currentCase.portraitUrl}
-                      alt={`${currentCase.guestName} 站在图书馆门口`}
-                      fallbackTitle={currentCase.guestName}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-2.5 flex items-center gap-2 px-4 py-1.5 rounded-[3px] bg-vintage-folio desk-ink-card text-[#241B14] group-hover:bg-[#8E2D20] group-hover:text-[#FAF6EE] group-hover:border-[#4E160F] transition-colors">
-                <DoorOpen className="w-3.5 h-3.5 shrink-0" />
-                <span className="font-serif-body text-xs sm:text-sm font-medium whitespace-nowrap">
-                  门铃轻响 · 请 {currentCase.guestName} 入座
-                </span>
-              </div>
-            </button>
-          </div>
-        )}
-
         {showGuestAtDesk && (
           <div className="w-full max-w-[840px] flex flex-col sm:flex-row items-end justify-center gap-4 sm:gap-5">
             {/* Rectangular Framed Oil-Portrait Character Card Seated Across the Oak Desk */}
@@ -561,9 +434,7 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
                     <p className="font-display text-sm font-semibold leading-tight tracking-wide">
                       {currentCase.guestName}
                     </p>
-                    <p className="text-[10px] font-serif-body text-[#E5D3B3] truncate">
-                      {currentCase.occupation}
-                    </p>
+
                   </div>
                 </div>
               </div>
@@ -589,15 +460,6 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
                     <span className="font-display text-xs sm:text-[13px] font-semibold text-[#241B14] truncate">
                       {currentCase.guestName}
                     </span>
-                    <span className="text-[11px] font-serif-body italic text-[#6D563B] truncate">
-                      {currentCase.englishName}
-                    </span>
-                    {hasServedTea && phase !== 'CASE_CLEARED' && (
-                      <span className="inline-flex items-center gap-1 pl-2 border-l border-[#B89864] text-[11px] font-serif-body font-medium text-[#7D3A19] whitespace-nowrap">
-                        <DeskTeacupArt className="w-4 h-4 shrink-0" />
-                        <span>已品洋甘菊茶</span>
-                      </span>
-                    )}
                   </div>
                 </div>
 
@@ -627,6 +489,12 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
                               <span className="font-semibold text-[#8E2D20]">花茶密谈：</span>
                               {currentCase.teaBonusHint}
                             </div>
+                          )}
+
+                          {phase === 'DESK_DIALOGUE' && (
+                            <p className="font-serif-body text-[11px] italic text-[#6B563C]/85">
+                              记住右侧书脊花纹
+                            </p>
                           )}
 
                           {hasInspectedGuest && GUEST_MAGNIFIER_OBSERVATIONS[currentCase.season] && (
@@ -663,7 +531,7 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
                 </div>
 
                 {/* Bottom Brass-Trimmed Action Plinth */}
-                {phase === 'CASE_CLEARED' ? (
+                {phase === 'CASE_CLEARED' && (
                   <div className="bg-[#E9D6B0]/85 border-t border-[#B89864] px-4 py-2.5">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                       <MagicRelicFrame season={currentCase.season} className="flex-1 min-w-0 w-full">
@@ -719,53 +587,6 @@ export const LibraryStage: React.FC<LibraryStageProps> = ({
                         </button>
                       )}
                     </div>
-                  </div>
-                ) : (
-                  <div className="bg-[#E9D6B0]/85 border-t border-[#B89864] px-4 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
-                    {phase === 'DESK_DIALOGUE' && (
-                      <>
-                        <span className="font-serif-body text-[#4E3B27]">
-                          记住右侧书脊花纹，前往四季书架寻回《{currentCase.bookTitle}》
-                        </span>
-                        <button
-                          type="button"
-                          onClick={onOpenShelves}
-                          className="px-3.5 py-1.5 font-serif-body font-medium text-[#FAF6EE] victorian-wax-btn rounded-[2px] transition-colors whitespace-nowrap"
-                        >
-                          去书架寻书
-                        </button>
-                      </>
-                    )}
-
-                    {phase === 'BOOK_INSPECTION' && (
-                      <>
-                        <span className="font-serif-body text-[#4E3B27]">
-                          《{currentCase.bookTitle}》已置桌面，请翻阅收集 4 枚入梦信物
-                        </span>
-                        <button
-                          type="button"
-                          onClick={onOpenBookModal}
-                          className="px-3.5 py-1.5 font-serif-body font-medium text-[#FAF6EE] victorian-wax-btn rounded-[2px] transition-colors whitespace-nowrap"
-                        >
-                          翻开梦境书
-                        </button>
-                      </>
-                    )}
-
-                    {phase === 'KNOT_RESOLUTION' && (
-                      <>
-                        <span className="font-serif-body text-[#4E3B27]">
-                          凭证已齐备，可入梦解析
-                        </span>
-                        <button
-                          type="button"
-                          onClick={onOpenKnotModal}
-                          className="px-3.5 py-1.5 font-serif-body font-medium text-[#FAF6EE] victorian-wax-btn rounded-[2px] transition-colors whitespace-nowrap"
-                        >
-                          进入梦境解析牌桌
-                        </button>
-                      </>
-                    )}
                   </div>
                 )}
               </div>

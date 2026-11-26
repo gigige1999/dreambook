@@ -1,5 +1,6 @@
 export type GamePhase =
   | 'TITLE_MENU'
+  | 'INTRO_CINEMATIC'
   | 'INTRO_PROLOGUE'
   | 'GUEST_ARRIVING'
   | 'DESK_DIALOGUE'

@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArchiveDrawer } from './components/ArchiveDrawer';
 import { BookInspectionModal } from './components/BookInspectionModal';
 import { DeskWorkbench } from './components/DeskWorkbench';
-import { DreamkeeperPrologue } from './components/DreamkeeperPrologue';
 import { ResilientImage } from './components/EvidenceIcon';
 import { KnotResolutionModal } from './components/KnotResolutionModal';
 import { LibraryStage } from './components/LibraryStage';
+import { OutdoorCinematic } from './components/OutdoorCinematic';
+import { SeasonEntrance } from './components/SeasonEntrance';
 import { ShelfSearchModal } from './components/ShelfSearchModal';
 import { TopHudBar } from './components/TopHudBar';
 import {
@@ -19,7 +20,8 @@ import { GUEST_CASES } from './data/libraryCases';
 import { GamePhase } from './types/game';
 import { libraryAudio } from './utils/audio';
 
-const LIBRARY_BACKDROP = '/src/assets/images/library_interior_rusty_fresh_1795439953648.jpg';
+const LIBRARY_BACKDROP = '/src/assets/scene/hall-main.jpg';
+const INTRO_SEEN_KEY = 'morning-dream-library:intro-seen-v1';
 
 const TEA_NOTES = [
   '微甜的洋甘菊热气散开，让桌面显得更安静了。',
@@ -29,6 +31,13 @@ const TEA_NOTES = [
 
 export default function App() {
   const [phase, setPhase] = useState<GamePhase>('TITLE_MENU');
+  const [hasSeenIntro, setHasSeenIntro] = useState<boolean>(() => {
+    try {
+      return window.localStorage.getItem(INTRO_SEEN_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
   const [guestIndex, setGuestIndex] = useState(0);
   const [collectedEvidenceIds, setCollectedEvidenceIds] = useState<string[]>([]);
   const [resolvedCaseIds, setResolvedCaseIds] = useState<string[]>([]);
@@ -79,9 +88,30 @@ export default function App() {
     setPhase(startPhase);
   };
 
-  const handleStartGame = (startIdx = 0, showPrologue = false) => {
+  const handleStartGame = (startIdx = 0, showIntro = false) => {
     libraryAudio.playDoorBell();
-    resetCaseProgress(startIdx, showPrologue ? 'INTRO_PROLOGUE' : 'GUEST_ARRIVING');
+    if (showIntro && !hasSeenIntro) {
+      setGuestIndex(startIdx);
+      setPhase('INTRO_CINEMATIC');
+      return;
+    }
+    resetCaseProgress(startIdx, 'GUEST_ARRIVING');
+  };
+
+  const handleIntroComplete = () => {
+    try {
+      window.localStorage.setItem(INTRO_SEEN_KEY, '1');
+    } catch {
+      /* 隐私模式下静默忽略 */
+    }
+    setHasSeenIntro(true);
+    libraryAudio.playDoorBell();
+    resetCaseProgress(guestIndex, 'GUEST_ARRIVING');
+  };
+
+  const handleReplayIntro = () => {
+    libraryAudio.playPageTurn();
+    resetCaseProgress(0, 'INTRO_CINEMATIC');
   };
 
   const handleWelcomeGuest = () => {
@@ -176,6 +206,7 @@ export default function App() {
     } else {
       const phaseTeaGuide: Record<GamePhase, string> = {
         TITLE_MENU: TEA_NOTES[0],
+        INTRO_CINEMATIC: TEA_NOTES[0],
         INTRO_PROLOGUE: TEA_NOTES[0],
         GUEST_ARRIVING: `轻啜一口洋甘菊茶，窗外晨风正拂过书廊。`,
         DESK_DIALOGUE: `花茶余温提示：请留意对话笺右上角书脊号 ${currentCase.bookCallNumber}，前往书架寻回《${currentCase.bookTitle}》。`,
@@ -212,12 +243,28 @@ export default function App() {
     setPropNotice('测试模式：已一键通关四季全部章节，并解锁所有隐藏信物与手帐彩蛋！');
   };
 
-  const SEASON_BADGES: Record<string, string> = {
-    spring: '春之卷',
-    summer: '夏之卷',
-    autumn: '秋之卷',
-    winter: '冬之卷',
-  };
+  // 隐藏快捷键，不占用界面：Cmd/Ctrl+Shift+Q 一键通关，Cmd/Ctrl+Shift+I 重看开场
+  const quickClearRef = useRef(handleQuickClearAll);
+  quickClearRef.current = handleQuickClearAll;
+  const replayIntroRef = useRef(handleReplayIntro);
+  replayIntroRef.current = handleReplayIntro;
+
+  useEffect(() => {
+    const onShortcut = (e: KeyboardEvent) => {
+      if (!(e.metaKey || e.ctrlKey) || !e.shiftKey) return;
+      const key = e.key.toLowerCase();
+      if (key === 'q') {
+        e.preventDefault();
+        quickClearRef.current();
+      } else if (key === 'i') {
+        e.preventDefault();
+        replayIntroRef.current();
+      }
+    };
+    window.addEventListener('keydown', onShortcut);
+    return () => window.removeEventListener('keydown', onShortcut);
+  }, []);
+
 
   if (phase === 'TITLE_MENU') {
     return (
@@ -232,7 +279,7 @@ export default function App() {
 
         {/* Centered Victorian Burgundy Leather-Bound Ex-Libris Registry Folio */}
         <div className="relative z-10 flex-1 min-h-0 flex items-center justify-center p-4 sm:p-6">
-          <div className="relative w-full max-w-[740px] rounded-[6px] bg-embossed-leather border-[2px] border-[#26110E] p-2.5 sm:p-3.5 shadow-[0_28px_64px_rgba(8,4,2,0.78)]">
+          <div className="relative w-full max-w-[560px] rounded-[6px] bg-embossed-leather border-[2px] border-[#26110E] p-2.5 sm:p-3.5 shadow-[0_28px_64px_rgba(8,4,2,0.78)]">
             <BrassCornerPlate position="tl" />
             <BrassCornerPlate position="tr" />
             <BrassCornerPlate position="bl" />
@@ -246,17 +293,17 @@ export default function App() {
                 <VictorianCornerFiligree color="#9B753D" sizeClass="w-5 h-5" />
 
                 {/* Upper Editorial Title */}
-                <div className="relative z-10 px-6 pt-6 pb-5 sm:px-8 sm:pt-7 sm:pb-6">
-                  <div className="flex items-start justify-between gap-4">
+                <div className="relative z-10 px-6 pt-8 pb-6 sm:px-8 sm:pt-9 sm:pb-7">
+                  <div className="flex flex-col items-center gap-3 text-center">
                     <div>
                       <h1 className="font-display text-3xl sm:text-[38px] font-semibold tracking-tight text-[#241B14] leading-tight text-balance">
                         晨露梦境图书馆
                       </h1>
                       <p className="mt-1.5 text-xs sm:text-[13px] font-serif-body italic text-[#7A5E3E]">
-                        以四季梦书为引，为迷途旅人解开被时光封存的执念
+                        为迷途旅人寻回梦境之书
                       </p>
                     </div>
-                    <CrimsonWaxSealMedallion glyph="梦" className="w-12 h-12 shrink-0 -mt-0.5" />
+                    <CrimsonWaxSealMedallion glyph="梦" className="w-11 h-11 shrink-0" />
                   </div>
                 </div>
 
@@ -267,53 +314,17 @@ export default function App() {
                     className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-[#E2BD76]/45"
                   />
 
-                  {/* Primary Action Row */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-[#C89F55]/28">
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <button
-                        type="button"
-                        onClick={() => handleStartGame(0, true)}
-                        className="px-6 py-2.5 text-sm font-serif-body font-medium text-[#FAF6EE] victorian-wax-btn rounded-[3px] transition-transform hover:-translate-y-0.5 whitespace-nowrap shrink-0"
-                      >
-                        入座开始值班
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={handleQuickClearAll}
-                        className="px-4 py-2.5 text-xs font-serif-body font-medium text-[#F5DEC0] bg-[#5B2228] hover:bg-[#6E2A31] border border-[#C89F55]/60 rounded-[3px] shadow-sm transition-colors whitespace-nowrap shrink-0"
-                      >
-                        测试：一键通关
-                      </button>
-                    </div>
+                  {/* Primary Action Row：只保留唯一入口 */}
+                  <div className="flex flex-wrap items-center justify-center gap-3 pb-3.5 border-b border-[#C89F55]/28">
+                    <button
+                      type="button"
+                      onClick={() => handleStartGame(0, true)}
+                      className="px-7 py-2.5 text-sm font-serif-body font-medium text-[#FAF6EE] victorian-wax-btn rounded-[3px] transition-transform hover:-translate-y-0.5 whitespace-nowrap shrink-0"
+                    >
+                      入座开始值班
+                    </button>
                   </div>
 
-                  {/* 4 Rectangular Antique Visitor Index Tabs */}
-                  <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {GUEST_CASES.map((c, idx) => (
-                      <button
-                        key={c.id}
-                        type="button"
-                        onClick={() => handleStartGame(idx, false)}
-                        className="group relative text-left rounded-[2px] border border-[#CFA95E]/80 bg-gradient-to-b from-[#FCF7E8] to-[#EFE1C4] hover:from-[#FFFDF6] hover:to-[#F6E9CB] px-2.5 py-2 text-[#241B14] shadow-[0_3px_8px_rgba(10,5,2,0.32),inset_0_0_0_1px_rgba(255,252,240,0.65)] transition-all hover:-translate-y-0.5"
-                      >
-                        <div className="flex items-center justify-between gap-1.5">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <SeasonSigilIcon season={c.season} className="w-4 h-4 shrink-0" />
-                            <span className="font-display text-xs font-semibold text-[#241B14] group-hover:text-[#8E2D20] truncate">
-                              {c.guestName}
-                            </span>
-                          </div>
-                          <span className="text-[10px] font-mono text-[#7C5B34] tabular-nums shrink-0">
-                            0{idx + 1}
-                          </span>
-                        </div>
-                        <p className="mt-0.5 text-[10px] font-serif-body text-[#644D36] truncate">
-                          {SEASON_BADGES[c.season] ?? c.fantasyProfile.seasonLabel}
-                        </p>
-                      </button>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
@@ -326,45 +337,24 @@ export default function App() {
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-[#E2BC7B]/40"
           />
-          <p className="text-[11px] font-serif-body tracking-wider text-[#DFC79C]">
-            晨露梦境图书馆
-          </p>
         </footer>
       </main>
     );
   }
 
-  if (phase === 'INTRO_PROLOGUE') {
-    return (
-      <DreamkeeperPrologue
-        onComplete={() => {
-          libraryAudio.playDoorBell();
-          setPhase('GUEST_ARRIVING');
-        }}
-      />
-    );
+  if (phase === 'INTRO_CINEMATIC') {
+    return <OutdoorCinematic onComplete={handleIntroComplete} />;
   }
 
   return (
     <div className="h-screen w-screen overflow-hidden flex flex-col bg-[#E7DFCE]">
       {/* Top 3-Zone Unobtrusive HUD */}
       <TopHudBar
-        phase={phase}
-        season={currentCase.season}
-        guestIndex={guestIndex}
-        totalGuests={GUEST_CASES.length}
-        guestName={currentCase.guestName}
-        collectedCount={collectedEvidenceIds.length}
-        totalEvidenceCount={currentCase.evidence.length}
         collectedGiftCount={collectedGiftIds.length}
+        totalGuests={GUEST_CASES.length}
         isMuted={isMuted}
         onToggleMute={handleToggleMute}
         onOpenArchive={() => setIsArchiveOpen(true)}
-        onOpenPrologue={() => {
-          libraryAudio.playPageTurn();
-          setPhase('INTRO_PROLOGUE');
-        }}
-        onQuickClearAll={handleQuickClearAll}
         onReturnTitle={() => setPhase('TITLE_MENU')}
       />
 
@@ -412,6 +402,18 @@ export default function App() {
         onNextGuest={handleNextGuest}
         onOpenArchive={() => setIsArchiveOpen(true)}
       />
+
+      {/* 来客抵达：馆外四季实景 + 肖像卡，开门后淡出到馆内书桌 */}
+      {phase === 'GUEST_ARRIVING' && (
+        <SeasonEntrance
+          key={currentCase.id}
+          currentCase={currentCase}
+          guestIndex={guestIndex}
+          totalGuests={GUEST_CASES.length}
+          slowDoor={guestIndex === 0}
+          onWelcomeGuest={handleWelcomeGuest}
+        />
+      )}
 
       {/* Shelf Search View Overlay */}
       {phase === 'SHELF_SEARCH' && (

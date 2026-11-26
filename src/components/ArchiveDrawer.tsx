@@ -144,8 +144,8 @@ export const ArchiveDrawer: React.FC<ArchiveDrawerProps> = ({
       <div className="w-full max-w-[920px] flex items-center justify-between gap-3 mb-3 text-[#FAF2E2]">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#2D1B11]/94 border border-[#B08A48]/75 rounded-[3px] shadow-md text-xs font-serif-body">
           <BookMarked className="w-4 h-4 text-[#E5C175] shrink-0" />
-          <span className="font-medium tracking-wide">
-            四季手帐档案 · 已收录 {collectedGiftIds.length}/{cases.length} 枚信物
+          <span className="font-medium tracking-wide tabular-nums">
+            手帐 {collectedGiftIds.length}/{cases.length}
           </span>
         </div>
 
@@ -156,7 +156,7 @@ export const ArchiveDrawer: React.FC<ArchiveDrawerProps> = ({
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-serif-body font-medium bg-[#3B2316]/94 hover:bg-[#4B2D1C] border border-[#B08A48]/75 rounded-[3px] shadow-md transition-colors whitespace-nowrap shrink-0"
         >
           <X className="w-3.5 h-3.5 text-[#E5C175]" />
-          <span>合上手帐</span>
+          <span>合上</span>
         </button>
       </div>
 
