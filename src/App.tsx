@@ -4,6 +4,7 @@ import { BookInspectionModal } from './components/BookInspectionModal';
 import { DeskWorkbench } from './components/DeskWorkbench';
 import { ResilientImage } from './components/EvidenceIcon';
 import { KnotResolutionModal } from './components/KnotResolutionModal';
+import { EvidenceConfront } from './components/EvidenceConfront';
 import { LibraryStage } from './components/LibraryStage';
 import { OutdoorCinematic } from './components/OutdoorCinematic';
 import { SeasonEntrance } from './components/SeasonEntrance';
@@ -149,6 +150,12 @@ export default function App() {
     setIsKnotModalOpen(true);
   };
 
+  const handleOpenConfront = () => {
+    libraryAudio.playPageTurn();
+    setIsBookModalOpen(false);
+    setPhase('CONFRONTATION');
+  };
+
   const handleResolveSuccess = (feedback: string) => {
     setResolvedCaseIds((prev) =>
       prev.includes(currentCase.id) ? prev : [...prev, currentCase.id]
@@ -212,6 +219,7 @@ export default function App() {
         DESK_DIALOGUE: `花茶余温提示：请留意对话笺右上角书脊号 ${currentCase.bookCallNumber}，前往书架寻回《${currentCase.bookTitle}》。`,
         SHELF_SEARCH: `花茶余温提示：目标《${currentCase.bookTitle}》的索书号为 ${currentCase.bookCallNumber}。`,
         BOOK_INSPECTION: `花茶余温提示：若第 4 页印记模糊，记得拿起左上角的黄铜放大镜照亮淡墨线索。`,
+        CONFRONTATION: `花茶余温提示：她说的是自己的错，先找出能推翻它的一件东西。`,
         KNOT_RESOLUTION: `花茶余温提示：洋甘菊茶已安抚 ${currentCase.guestName} 的心绪，入梦牌桌上已自动浮现破咒护佑。`,
         CASE_CLEARED: TEA_NOTES[guestIndex % TEA_NOTES.length],
       };
@@ -394,6 +402,7 @@ export default function App() {
         hasMoreGuests={resolvedCaseIds.length < GUEST_CASES.length}
         onOpenShelves={handleOpenShelves}
         onOpenBookModal={() => setIsBookModalOpen(true)}
+        onOpenConfront={handleOpenConfront}
         onOpenKnotModal={() => {
           libraryAudio.playMagicChime();
           setIsKnotModalOpen(true);
@@ -439,6 +448,20 @@ export default function App() {
         onEnterKnotResolution={handleEnterKnotResolution}
         onClose={() => setIsBookModalOpen(false)}
       />
+
+      {/* 对证：指出推翻客人自我指控的那件信物 */}
+      {phase === 'CONFRONTATION' && (
+        <EvidenceConfront
+          currentCase={currentCase}
+          collectedEvidenceIds={collectedEvidenceIds}
+          onPass={() => {
+            libraryAudio.playMagicChime();
+            setPhase('KNOT_RESOLUTION');
+            setIsKnotModalOpen(true);
+          }}
+          onClose={() => setPhase('BOOK_INSPECTION')}
+        />
+      )}
 
       {/* Dream Magic Modal with Seasonal Puzzles & Good/Bad Endings */}
       <KnotResolutionModal

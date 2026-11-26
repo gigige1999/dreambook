@@ -6,6 +6,7 @@ export type GamePhase =
   | 'DESK_DIALOGUE'
   | 'SHELF_SEARCH'
   | 'BOOK_INSPECTION'
+  | 'CONFRONTATION'
   | 'KNOT_RESOLUTION'
   | 'CASE_CLEARED';
 
@@ -125,6 +126,14 @@ export interface GuestCase {
   greetingDialogue: string;
   bookHint: string;
   teaBonusHint: string;
+  /** 对证环节：客人对自我的错误指控，以及能推翻它的那件信物 */
+  confront: {
+    accusation: string;
+    prompt: string;
+    keyEvidenceId: string;
+    onCorrect: string;
+    onWrong: string;
+  };
   targetBookId: string;
   bookTitle: string;
   bookCallNumber: string;

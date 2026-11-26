@@ -842,13 +842,20 @@ export const GUEST_CASES: GuestCase[] = [
     englishName: 'Isolde',
     occupation: '梦芽守林人 · 植物记忆魔法',
     portraitUrl: 'src/assets/scene/portrait-spring.jpg',
-    arrivalLine: '门上的黄铜风铃响起带着草叶清气的声音，一位发间藏着细小嫩芽、指尖泛着淡绿微光的维多利亚少女轻步走来。',
+    arrivalLine: '门铃响了两下。一位袖口沾着干泥的女守林人走进来，掌心托着一株迟迟没开的花芽。',
     greetingDialogue:
-      '“早安，图书管理员。我能听见植物在梦里生长的声音……可自从挚友在花期到来前失踪，我只要一说出‘永远’，花朵就会静止。我每天都在回到同一个发芽的梦境里，生怕春天只是会醒来的一场梦。”',
+      '“我叫伊索尔德，城南梦芽园的守林人。去年花期前，我的朋友格蕾不见了，只留下一句话——‘去看下一个春天’。从那以后，只要我一说‘永远’，身边的花就会停住。我总觉得，是我没能把春天留住，才把她也弄丢了。”',
     bookHint:
-      '提示：她在找一本浅草绿亚麻脊、缠着嫩芽的《漂浮温室梦芽志》，安放在左翼飘着薄雾清香的「春 · 温室梦芽区」。',
+      '书在「春 · 温室梦芽区」，索书号 SPR-217。',
     teaBonusHint:
-      '喝过洋甘菊热茶后，伊索尔德指尖的绿光柔缓了些：“书就在「春 · 温室梦芽区」（SPR-217）。其实我心里隐约知道……让花离开，才会有下一季的梦。”',
+      '热气漫上来，她的手指松开一点：“书在「春 · 温室梦芽区」，SPR-217。其实我记得，她走那天是笑着的。”',
+    confront: {
+      accusation: '“是我没能留住春天，才把她弄丢的。”',
+      prompt: '哪件信物能说明她错怪了自己？',
+      keyEvidenceId: 'ev-sp-promise',
+      onCorrect: '那份旧约定上从头到尾没有“永远”两个字，只写了“一起看见春天”。伊索尔德怔了很久：“……‘永远’是我后来自己加上去的。”',
+      onWrong: '她摇头：“这只能说明我想她，不能说明她没怪我。”',
+    },
     targetBookId: 'book-isolde',
     bookTitle: '漂浮温室梦芽志',
     bookCallNumber: 'SPR-217',
@@ -978,7 +985,7 @@ export const GUEST_CASES: GuestCase[] = [
       dreamTitle: '进入梦境 · 漂浮的梦之温室',
       dreamAtmosphere: '玻璃穹顶外悬着满月，发光花粉随微风起伏，藤梯向上延伸。',
       puzzleMode: 'sequence',
-      puzzleInstruction: '请将四枚梦境卡牌按自然生长与释怀的正确顺序排列（播种 — 等待 — 开花 — 告别）：',
+      puzzleInstruction: '按手记里的四时之序，把四张牌排好。牌面只写了做法，次序要你自己定。',
       puzzleCards: [
         { id: 'seq-bloom', label: '开花', subtitle: '诚实的阳光唤醒花苞', symbol: '❀' },
         { id: 'seq-sow', label: '播种', subtitle: '把旧约定的种子埋入黑土', symbol: '❦' },
@@ -986,8 +993,8 @@ export const GUEST_CASES: GuestCase[] = [
         { id: 'seq-wait', label: '等待', subtitle: '允许晨露与时间静静经过', symbol: '☂' },
       ],
       correctOrderIds: ['seq-sow', 'seq-wait', 'seq-bloom', 'seq-farewell'],
-      question: '排列好「播种 — 等待 — 开花 — 告别」后，面对即将消逝的梦芽园，伊索尔德该如何抉择？',
-      guestWorry: '“如果松开了握住春天的手，我和她一起种下的花，是不是就再也不会回来了？”',
+      question: '牌阵排好了：这段回忆，伊索尔德该拿它怎么办？',
+      guestWorry: '“如果我松开手，我们一起种的那朵花，是不是就再也不会开了？”',
       interpretations: [
         {
           id: 'interp-sp-good',
@@ -1023,8 +1030,8 @@ export const GUEST_CASES: GuestCase[] = [
         desc: '花朵还没有按「播种 — 等待 — 开花 — 告别」走完它的生命，便被急切的心意弄乱了季节。',
       },
       resolutionDialogue:
-        '“原来‘告别’并不是让春天死去，而是替种子打开通往下一季的门……听，那些被我冻住的花茎又开始沙沙生长了。谢谢你，让我终于走出这座反复醒来的温室。”',
-      healingMotto: '允许春天自然离开，种子才会化作下一季的梦。',
+        '“原来她说‘去看下一个春天’，不是让我留在原地等……花得谢了，种子才落得下来。谢谢你，我敢松手了。”',
+      healingMotto: '松手不是失去，是把春天交给下一季。',
       archiveStamp: '春芽灵印 · 已绽放',
     },
     giftKeepsake: {
@@ -1053,13 +1060,20 @@ export const GUEST_CASES: GuestCase[] = [
     englishName: 'Arthur',
     occupation: '幻声钢琴师 · 音乐入梦',
     portraitUrl: 'src/assets/scene/portrait-summer.jpg',
-    arrivalLine: '阳光被窗棂切出金色光柱，一位身着深蓝灰维多利亚西装、领口绣着音符暗影的钢琴师走近桌前，指尖泛着淡淡金色灵光。',
+    arrivalLine: '一位大衣还带着雨气的钢琴师进门，右手食指一直蜷着，像是不敢落在琴键上。',
     greetingDialogue:
-      '“日安，馆长。我的琴声能替人推开梦境之门……可三年前那场盛夏演出，我弹错了《召唤之曲》中的一个音，学徒就在众目睽睽下被卷进了幻镜，从此消失在回声里。是不是我的手指杀死了他？”',
+      '“三年前的音乐会，我在《召唤之曲》里弹错了一个音。灯灭的那一瞬，我的学徒艾伦不见了。有人说他被卷进了幻镜，再没人见过他。这三年我一直想：是我那根手指把他弹走的吧？”',
     bookHint:
-      '提示：他在寻找一本深蓝灰布面、领口纹饰如音符般的《永夏空剧院乐谱集》，藏在隐隐传出琴弦余音的「夏 · 幻声剧院区」。',
+      '乐谱在「夏 · 幻声剧院区」，索书号 SUM-315。',
     teaBonusHint:
-      '端起花茶暖了暖泛着微光的指尖，亚瑟低声说：“乐谱就在「夏 · 幻声剧院区」（SUM-315）。我怀表里的指针一直停在弹错音的那一秒，观众席上全是不肯散去的透明影子……”',
+      '他捧着杯子暖手：“乐谱在「夏 · 幻声剧院区」，SUM-315。说出来有点丢人——那一小节我三年没敢再碰。”',
+    confront: {
+      accusation: '“是我那根手指，把他弹进了幻镜。”',
+      prompt: '哪件信物能说明他错怪了自己？',
+      keyEvidenceId: 'ev-su-key',
+      onCorrect: '那枚金色琴键上还留着艾伦的声音：“哪怕按偏了半个音，那也是只属于今晚的旋律呀。”亚瑟盯着它，很久没说话。',
+      onWrong: '他皱起眉：“这只能说明那晚我在场，说明不了别的。”',
+    },
     targetBookId: 'book-arthur',
     bookTitle: '永夏空剧院乐谱集',
     bookCallNumber: 'SUM-315',
@@ -1189,7 +1203,7 @@ export const GUEST_CASES: GuestCase[] = [
       dreamTitle: '进入梦境 · 永夏空剧院',
       dreamAtmosphere: '金色追光打在三角钢琴上，观众席上透明的影子静静等待终曲落幕。',
       puzzleMode: 'melody_sequence',
-      puzzleInstruction: '请将四张音符卡牌按正确乐章顺序排列，完整奏完这首告别曲（切忌重复失误）：',
+      puzzleInstruction: '把四张牌排成那一晚的乐章次序。牌上写着那一夜发生了什么，顺序就在里面。',
       puzzleCards: [
         { id: 'mel-watch', label: '怀表余响', subtitle: '聆听学徒留下的最后旋律', symbol: '♩' },
         { id: 'mel-intro', label: '前奏启幕', subtitle: '金色琴键唤醒盛夏光影', symbol: '𝄞' },
@@ -1197,8 +1211,8 @@ export const GUEST_CASES: GuestCase[] = [
         { id: 'mel-crack', label: '接纳错音', subtitle: '不再逃避那道破碎小节', symbol: '♬' },
       ],
       correctOrderIds: ['mel-intro', 'mel-crack', 'mel-watch', 'mel-applause'],
-      question: '当乐谱重新流淌到那个当年弹错的小节时，亚瑟应该如何按下琴键？',
-      guestWorry: '“只要能回到失误前一秒把错音改对，是不是就能把他从幻镜里拉回来了？”',
+      question: '排好这一夜之后：再弹到出错的那一小节，亚瑟该怎么办？',
+      guestWorry: '“只要我把那个音改对，是不是就能把他换回来？”',
       interpretations: [
         {
           id: 'interp-su-good',
@@ -1234,8 +1248,8 @@ export const GUEST_CASES: GuestCase[] = [
         desc: '琴声未能按「前奏启幕 — 接纳错音 — 怀表余响 — 掌声落幕」连贯奏响，空剧院再次响起刺耳杂音。',
       },
       resolutionDialogue:
-        '“原来那个错音并没有杀死他，反而为他打开了通往宁静之夏的窗……听，观众席真的鼓起掌来了。连我停了三年的怀表，也重新走动了。”',
-      healingMotto: '错误也是音乐的一部分，唯有接纳遗憾，旋律才能真正落幕。',
+        '“他当时说的是——按偏半个音，也是今晚才有的旋律。原来他不是被我弹走的，是他自己追着那段旋律走的。”',
+      healingMotto: '错音不是罪证，是那一晚的一部分。',
       archiveStamp: '夏蝶灵印 · 终曲已响',
     },
     giftKeepsake: {
@@ -1264,13 +1278,20 @@ export const GUEST_CASES: GuestCase[] = [
     englishName: 'Martha',
     occupation: '笔迹女巫 · 文字存忆',
     portraitUrl: 'src/assets/scene/portrait-autumn.jpg',
-    arrivalLine: '落叶随微风掠过门槛，一位披着暖灰羊毛披肩的年迈女抄写员缓步而来，手里那支羽毛笔正散发着淡淡的紫色微光。',
+    arrivalLine: '一位披着灰披肩的老抄写员进门，抱着一只鼓胀的信匣，纸页在里面哗啦作响。',
     greetingDialogue:
-      '“打扰你了，年轻的馆长。我帮别人抄写了一辈子书信，也能用文字把记忆锁在纸上……可先生走后，我越是想记下他的声音、笑容和那句‘回家’，信纸上的字就散得越快，有些信甚至重得像石头。”',
+      '“我替人抄了一辈子信。先生走后，我想把他的声音、他的笑、他说过的每一句‘回家’都抄下来。可越抄，字散得越快；有的信压得我抱不动。我怕哪天连他的样子都想不起来了。”',
     bookHint:
-      '提示：她在找一本暖灰麻布脊、边缘会自己浮现紫光的《秋风消散的记忆信札》，藏在壁炉旁的「秋 · 记忆邮局区」。',
+      '信札在「秋 · 记忆邮局区」，索书号 AUT-408。',
     teaBonusHint:
-      '捧着热茶舒展指节后，玛莎轻声叹息：“信札在「秋 · 记忆邮局区」（AUT-408）。师父当年提醒过我，文字的魔法是允许记忆变形，可我却贪心地想锁住一切……”',
+      '她仔细抚平信纸的折角：“信札在「秋 · 记忆邮局区」，AUT-408。师父说过，字是替人记事的，不是替人留人的。”',
+    confront: {
+      accusation: '“少写一句，就等于又忘掉他一点。”',
+      prompt: '哪件信物能说明她错怪了自己？',
+      keyEvidenceId: 'ev-au-portrait',
+      onCorrect: '碎片的角落写着：“只要记得三个最暖的瞬间，他就从未离开。”玛莎把信匣往怀里又抱紧了些，然后慢慢松开。',
+      onWrong: '她轻轻叹气：“这些东西只是旧纸，记住他是我自己的事。”',
+    },
     targetBookId: 'book-martha',
     bookTitle: '秋风消散的记忆信札',
     bookCallNumber: 'AUT-408',
@@ -1400,7 +1421,7 @@ export const GUEST_CASES: GuestCase[] = [
       dreamTitle: '进入梦境 · 漂浮的记忆邮局',
       dreamAtmosphere: '信件如秋叶在半空徐徐盘旋，桌面紫光羽毛笔正等待你帮她做出取舍。',
       puzzleMode: 'portrait_select',
-      puzzleInstruction: '从五片记忆碎片中，【只挑选最温暖的 3 段记忆】拼出丈夫的肖像（切勿贪多选满，超重会使记忆石化成怪物）：',
+      puzzleInstruction: '从散落的记忆里只挑三段最暖的，拼出他的样子。挑多了，纸会压垮。',
       puzzleCards: [
         { id: 'mem-hearth', label: '壁炉旁的低笑', subtitle: '暖光里他把灰披肩搭在我肩头', symbol: '♡', isWarmMemory: true },
         { id: 'mem-tea', label: '秋雨中的热红茶', subtitle: '窗外落叶飘过，桌上杯盏温热', symbol: '☕', isWarmMemory: true },
@@ -1408,8 +1429,8 @@ export const GUEST_CASES: GuestCase[] = [
         { id: 'mem-ledger', label: '沉重药单与账目', subtitle: '病榻旁冰冷琐碎的数字与焦虑', symbol: '🪨', isWarmMemory: false },
         { id: 'mem-chain', label: '强行锁死的执念', subtitle: '试图一字不落封存所有悲欢的铁链', symbol: '⛓', isWarmMemory: false },
       ],
-      question: '拼好三段最温暖的记忆后，其余正在消散的信纸该如何处置？',
-      guestWorry: '“要是任由其他琐碎的文字被风吹散，我会不会有一天再也拼不起他的样子？”',
+      question: '肖像拼好了：剩下那些写不下去的信，该怎么处理？',
+      guestWorry: '“要是把它们放下，我会不会有一天连他叫什么都想不起来？”',
       interpretations: [
         {
           id: 'interp-au-good',
@@ -1445,8 +1466,8 @@ export const GUEST_CASES: GuestCase[] = [
         desc: '在这个魔法邮局里，贪心地拼接过多碎片或掺入痛苦执念，会让温暖回忆立刻变成沉重冰冷的石块。请试着只留最温暖的 3 段。',
       },
       resolutionDialogue:
-        '“原来真正的想念这么轻……只留住壁炉的笑声、热茶和那句‘回家’，就足够让他在风里继续牵着我的手了。你看，桌角的羽毛笔又自己写下一行字呢。”',
-      healingMotto: '允许记忆随风变形，只把最温暖的三段抱在怀里。',
+        '“只留三段，他反而清楚了……原来我把整座山都搬进信里，才什么都看不清。剩下的，我可以慢慢想。”',
+      healingMotto: '记住一个人，不必记住他的全部。',
       archiveStamp: '秋叶灵印 · 轻盈归风',
     },
     giftKeepsake: {
@@ -1475,13 +1496,20 @@ export const GUEST_CASES: GuestCase[] = [
     englishName: 'Samuel',
     occupation: '时间囚钟匠 · 冰晶时间魔法',
     portraitUrl: 'src/assets/scene/portrait-winter.jpg',
-    arrivalLine: '细雪无声贴在窗玻璃上，一位穿着深石墨灰长外套、胸前垂着冰晶吊坠的沉默钟表匠走近桌边，指尖正冻在透明的时间气泡里。',
+    arrivalLine: '门开时带进一阵冷气。钟表匠在门口站了一会儿才进来，先摘了手套，才低声说了句“打扰”。',
     greetingDialogue:
-      '“晚上好……我能修补世上任何一道时间的裂缝，唯独修不好自己的愧疚。为了等一个人回来，我把自己的时间封进冰钟里——结果时间真的停止了，可我同时也失去了对方到来的可能性。”',
+      '“十年前，我妻子说去北边办点事，让我等她。我怕她回来时我已经老了，就把自己的时间封进了钟里。钟停了十年，她也一直没回来——后来我才想明白：时间停住的时候，‘她会回来’这件事也一起停住了。”',
     bookHint:
-      '提示：他在寻找一本深石墨灰硬皮、覆着一层薄霜的《雪停在钟面的那一刻》，存放在冷银微光的「冬 · 永冻钟楼区」。',
+      '手稿在「冬 · 永冻钟楼区」，索书号 WIN-519。',
     teaBonusHint:
-      '指间气泡在热茶雾气前稍稍融化了一分，塞缪尔低声开口：“那本手稿在「冬 · 永冻钟楼区」（WIN-519）。如果当时再等一刻……不，也许我把齿轮修得太满了。”',
+      '热气化开他指尖的薄霜：“手稿在「冬 · 永冻钟楼区」，WIN-519。我一直不敢碰它，怕翻开就得承认自己修错了。”',
+    confront: {
+      accusation: '“只要时间停住，她回来的时候我就还在。”',
+      prompt: '哪件信物能说明他错怪了自己？',
+      keyEvidenceId: 'ev-wi-snow',
+      onCorrect: '雪晶中心的暗语写着：“门外台阶有脚印，只有时间重新流动，才走得到你身边。”塞缪尔的手抖了一下。',
+      onWrong: '他盯着看了会儿：“这只是一块化掉的冰，说明不了什么。”',
+    },
     targetBookId: 'book-samuel',
     bookTitle: '雪停在钟面的那一刻',
     bookCallNumber: 'WIN-519',
@@ -1611,14 +1639,14 @@ export const GUEST_CASES: GuestCase[] = [
       dreamTitle: '进入梦境 · 永冻钟楼',
       dreamAtmosphere: '悬浮钟表在冰蓝夜色中静默，雪花停在指尖之外，只差一枚齿轮决定去留。',
       puzzleMode: 'clock_gears',
-      puzzleInstruction: '请谨慎组装这台永冻座钟——【绝对不要修满所有齿轮】！只选择安装应该转动的那 1 枚齿轮：',
+      puzzleInstruction: '给这座钟只装一枚齿轮，让它重新走起来。装满了，它就又停了。',
       puzzleCards: [
         { id: 'gear-past', label: '过去之齿 · 再等一刻', subtitle: '把时间拖回十年前雪夜的停顿点', symbol: '↺', isFutureGear: false },
         { id: 'gear-present', label: '静止之齿 · 冰晶封印', subtitle: '牢牢锁死这一秒，保持永不改变的等待', symbol: '❄', isFutureGear: false },
         { id: 'gear-future', label: '未来之齿 · 流动新光', subtitle: '松开冰封，允许下一秒带着融雪走来', symbol: '⚙', isFutureGear: true },
       ],
-      question: '齿轮安装完毕后，塞缪尔该如何拨动面前这台静止十年的钟表？',
-      guestWorry: '“要是修好整座钟就能让一切严丝合缝，我还要不要只留下那一个缺口？”',
+      question: '钟开始走了：塞缪尔该把它拨到哪一刻？',
+      guestWorry: '“如果只留下一个缺口，这台钟还算修好了吗？”',
       interpretations: [
         {
           id: 'interp-wi-good',
@@ -1654,8 +1682,8 @@ export const GUEST_CASES: GuestCase[] = [
         desc: '在这个永冻钟楼里，修满所有齿轮或安装“过去/静止”齿轮只会让时间死锁。请取消多余齿轮，【仅保留“未来之齿”】。',
       },
       resolutionDialogue:
-        '“听见了吗……悬在半空的雪花终于落地了。原来让我失去可能性的不是那场雪，而是我自己不敢走出的那一秒。手指上的气泡已经化掉了，真暖和。”',
-      healingMotto: '不再冻结等待，只修好“未来”那一枚齿轮，时间自会重新流动。',
+        '“它走了……走了就还有明天。原来我不必把她等成一个结果，我可以一边过日子，一边等。”',
+      healingMotto: '留一个缺口，时间才能继续走。',
       archiveStamp: '冬钟灵印 · 时光重流',
     },
     giftKeepsake: {

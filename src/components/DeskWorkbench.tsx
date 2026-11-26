@@ -12,6 +12,7 @@ interface DeskWorkbenchProps {
   hasMoreGuests: boolean;
   onOpenShelves: () => void;
   onOpenBookModal: () => void;
+  onOpenConfront: () => void;
   onOpenKnotModal: () => void;
   onCollectGift: (giftId: string) => void;
   onNextGuest: () => void;
@@ -30,6 +31,7 @@ export const DeskWorkbench: React.FC<DeskWorkbenchProps> = ({
   hasMoreGuests,
   onOpenShelves,
   onOpenBookModal,
+  onOpenConfront,
   onOpenKnotModal,
   onCollectGift,
   onNextGuest,
@@ -115,11 +117,11 @@ export const DeskWorkbench: React.FC<DeskWorkbenchProps> = ({
               {allCollected && (
                 <button
                   type="button"
-                  onClick={onOpenKnotModal}
+                  onClick={onOpenConfront}
                   className="inline-flex items-center gap-1.5 rounded-[2px] px-4 py-1.5 text-xs font-serif-body font-medium text-[#FAF6EE] victorian-wax-btn transition-colors whitespace-nowrap"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>入梦解结</span>
+                  <span>当面问清楚</span>
                 </button>
               )}
             </>
