@@ -851,10 +851,19 @@ export const GUEST_CASES: GuestCase[] = [
       '热气漫上来，她的手指松开一点：“书在「春 · 温室梦芽区」，SPR-217。其实我记得，她走那天是笑着的。”',
     confront: {
       accusation: '“是我没能留住春天，才把她弄丢的。”',
-      prompt: '哪件信物能说明她错怪了自己？',
-      keyEvidenceId: 'ev-sp-promise',
-      onCorrect: '那份旧约定上从头到尾没有“永远”两个字，只写了“一起看见春天”。伊索尔德怔了很久：“……‘永远’是我后来自己加上去的。”',
+      prompt: '哪两件东西能推翻这句话？',
+      keyEvidenceIds: ['ev-sp-promise', 'ev-sp-sprout'],
+      onCorrect: '约定上从头到尾没有“永远”两个字，只写了“一起看见春天”；窗上那行绿字是格蕾留下的告别——去下一个春天里盛开吧。伊索尔德怔了很久：“……那三个字，是我自己加上去的。”',
       onWrong: '她摇头：“这只能说明我想她，不能说明她没怪我。”',
+      timeline: {
+        prompt: '先把这三件事按发生的先后排好：',
+        events: [
+          { id: 't1', label: '我在花架下埋下一粒种子' },
+          { id: 't2', label: '我在约定后面添了“永远”两个字' },
+          { id: 't3', label: '花停住，种子没能落下来' },
+        ],
+        correctOrderIds: ['t1', 't2', 't3'],
+      },
     },
     targetBookId: 'book-isolde',
     bookTitle: '漂浮温室梦芽志',
@@ -916,10 +925,10 @@ export const GUEST_CASES: GuestCase[] = [
     pages: [
       {
         pageNumber: 1,
-        chapterTitle: '第一章 · 通向月亮的温室藤梯',
+        chapterTitle: '第一章 · 温室里的第一朵花',
         paragraphs: [
-          '悬在云雾间的玻璃温室里，白花藤蔓正顺着穹顶攀向满月。',
-          '只要听见真实记忆，花朵便会发亮；口袋里这瓶微光花粉，正封存着我们初识那年的笑声。',
+          '梦里的温室悬在云上，花藤顺着屋顶一直爬到月亮边上。',
+          '格蕾走的前一晚，我在这排花架下种了一粒种子。她说：等它开花，我就回来看。',
         ],
         hotspots: [
           {
@@ -928,7 +937,7 @@ export const GUEST_CASES: GuestCase[] = [
             snippet: '记忆花粉',
           },
         ],
-        keepsakeNote: '手记批注：试药盘边的枯茎只认诚实之水；留意绽放后枝头生出的细节。',
+        keepsakeNote: '手记：种子要先埋进土里，才轮得到露水、开花、放手。',
       },
       {
         pageNumber: 2,
@@ -1069,10 +1078,19 @@ export const GUEST_CASES: GuestCase[] = [
       '他捧着杯子暖手：“乐谱在「夏 · 幻声剧院区」，SUM-315。说出来有点丢人——那一小节我三年没敢再碰。”',
     confront: {
       accusation: '“是我那根手指，把他弹进了幻镜。”',
-      prompt: '哪件信物能说明他错怪了自己？',
-      keyEvidenceId: 'ev-su-key',
-      onCorrect: '那枚金色琴键上还留着艾伦的声音：“哪怕按偏了半个音，那也是只属于今晚的旋律呀。”亚瑟盯着它，很久没说话。',
+      prompt: '哪两件东西能推翻这句话？',
+      keyEvidenceIds: ['ev-su-key', 'ev-su-ticket'],
+      onCorrect: '琴键上留着他的话：按偏半个音，也是今晚才有的旋律；票根背面写着——我想跟着那段旋律走。亚瑟盯着看了很久：“……他不是被我弹走的。”',
       onWrong: '他皱起眉：“这只能说明那晚我在场，说明不了别的。”',
+      timeline: {
+        prompt: '先把这三件事按发生的先后排好：',
+        events: [
+          { id: 't1', label: '开演，第七个节目是艾伦独奏' },
+          { id: 't2', label: '我弹错了一个音' },
+          { id: 't3', label: '灯灭之后，他自己走下了台' },
+        ],
+        correctOrderIds: ['t1', 't2', 't3'],
+      },
     },
     targetBookId: 'book-arthur',
     bookTitle: '永夏空剧院乐谱集',
@@ -1134,10 +1152,10 @@ export const GUEST_CASES: GuestCase[] = [
     pages: [
       {
         pageNumber: 1,
-        chapterTitle: '第一章 · 永夏空剧院的追光',
+        chapterTitle: '第一章 · 那一晚的乐谱',
         paragraphs: [
-          '七月黄昏的空剧院里，丝绒幕布半垂，空座上坐满透明的旧影。',
-          '谱架上的《召唤之曲》早被裂痕撕成两半，正横穿当年弹错的那一小节。',
+          '《召唤之曲》最后一页缺了一角，正好是出错的那一小节。',
+          '书里还夹着那晚的节目单：第七个节目，艾伦独奏。',
         ],
         hotspots: [
           {
@@ -1146,7 +1164,7 @@ export const GUEST_CASES: GuestCase[] = [
             snippet: '碎乐谱',
           },
         ],
-        keepsakeNote: '手记批注：五线横纹对齐之时，细察金笔圈出的首音与小节拍号。',
+        keepsakeNote: '手记：那一晚的次序是——开演、出错、有人离开、掌声。',
       },
       {
         pageNumber: 2,
@@ -1287,10 +1305,19 @@ export const GUEST_CASES: GuestCase[] = [
       '她仔细抚平信纸的折角：“信札在「秋 · 记忆邮局区」，AUT-408。师父说过，字是替人记事的，不是替人留人的。”',
     confront: {
       accusation: '“少写一句，就等于又忘掉他一点。”',
-      prompt: '哪件信物能说明她错怪了自己？',
-      keyEvidenceId: 'ev-au-portrait',
-      onCorrect: '碎片的角落写着：“只要记得三个最暖的瞬间，他就从未离开。”玛莎把信匣往怀里又抱紧了些，然后慢慢松开。',
+      prompt: '哪两件东西能推翻这句话？',
+      keyEvidenceIds: ['ev-au-portrait', 'ev-au-wax'],
+      onCorrect: '碎片背面写着：只要记得三个最暖的瞬间，他就从未离开；而你盖的蜡一次比一次厚，信才会被撬碎。玛莎把信匣抱紧，又慢慢松开。',
       onWrong: '她轻轻叹气：“这些东西只是旧纸，记住他是我自己的事。”',
+      timeline: {
+        prompt: '先把这三件事按发生的先后排好：',
+        events: [
+          { id: 't1', label: '先生走后，我开始抄他的信' },
+          { id: 't2', label: '我把封蜡盖得一次比一次厚' },
+          { id: 't3', label: '信越来越重，字散得越来越快' },
+        ],
+        correctOrderIds: ['t1', 't2', 't3'],
+      },
     },
     targetBookId: 'book-martha',
     bookTitle: '秋风消散的记忆信札',
@@ -1352,10 +1379,10 @@ export const GUEST_CASES: GuestCase[] = [
     pages: [
       {
         pageNumber: 1,
-        chapterTitle: '第一章 · 半空飞行的记忆邮局',
+        chapterTitle: '第一章 · 信从半空落下来',
         paragraphs: [
-          '梦里的记忆邮局没有屋顶，写给已故先生的信正像白鸽般贴顶盘旋。',
-          '信末的日常细语逐字消散，唯独页边还留着几行带着紫光的句子。',
+          '梦里的邮局没有屋顶，写给先生的信在上面打转。',
+          '一封信掉下来：前半页的生活琐事已经淡了，末尾几行还亮着。',
         ],
         hotspots: [
           {
@@ -1364,7 +1391,7 @@ export const GUEST_CASES: GuestCase[] = [
             snippet: '消散信件',
           },
         ],
-        keepsakeNote: '手记批注：红绳死结紧勒信袋；信封顶端三枚邮票的纹印，正记着解绳的先后。',
+        keepsakeNote: '手记：淡掉的是琐事，留下来的是那几句暖话。',
       },
       {
         pageNumber: 2,
@@ -1505,10 +1532,19 @@ export const GUEST_CASES: GuestCase[] = [
       '热气化开他指尖的薄霜：“手稿在「冬 · 永冻钟楼区」，WIN-519。我一直不敢碰它，怕翻开就得承认自己修错了。”',
     confront: {
       accusation: '“只要时间停住，她回来的时候我就还在。”',
-      prompt: '哪件信物能说明他错怪了自己？',
-      keyEvidenceId: 'ev-wi-snow',
-      onCorrect: '雪晶中心的暗语写着：“门外台阶有脚印，只有时间重新流动，才走得到你身边。”塞缪尔的手抖了一下。',
+      prompt: '哪两件东西能推翻这句话？',
+      keyEvidenceIds: ['ev-wi-gear', 'ev-wi-snow'],
+      onCorrect: '齿轮背面刻着：不必填满，只需让下一秒转动；雪化开的地方留着一行字——只有时间重新流动，才走得到你身边。塞缪尔的手抖了一下。',
       onWrong: '他盯着看了会儿：“这只是一块化掉的冰，说明不了什么。”',
+      timeline: {
+        prompt: '先把这三件事按发生的先后排好：',
+        events: [
+          { id: 't1', label: '她说去北边，让我等她' },
+          { id: 't2', label: '我把自己的时间锁进了钟里' },
+          { id: 't3', label: '钟停了十年，她一直没回来' },
+        ],
+        correctOrderIds: ['t1', 't2', 't3'],
+      },
     },
     targetBookId: 'book-samuel',
     bookTitle: '雪停在钟面的那一刻',
@@ -1570,10 +1606,10 @@ export const GUEST_CASES: GuestCase[] = [
     pages: [
       {
         pageNumber: 1,
-        chapterTitle: '第一章 · 永冻钟楼里的悬雪',
+        chapterTitle: '第一章 · 缺一枚齿轮的钟',
         paragraphs: [
-          '推开钟楼铁门，满天雪花全都悬在半空，像千百颗冻住的玻璃珠。',
-          '我原想靠齿轮追回错失的时间，唯有抽屉底那枚“未来之齿”仍带微温。',
+          '座钟缺一枚齿轮。我修了十年，一直没修上。',
+          '齿轮背面刻着一行小字：不必填满，只需让下一秒转动。',
         ],
         hotspots: [
           {
@@ -1582,7 +1618,7 @@ export const GUEST_CASES: GuestCase[] = [
             snippet: '黄铜齿轮',
           },
         ],
-        keepsakeNote: '手记批注：左大右小，齿廓各异；匣底似有空铜壳，失落的右齿或许封于寒冰。',
+        keepsakeNote: '手记：钟不必修满，能走起来就够。',
       },
       {
         pageNumber: 2,

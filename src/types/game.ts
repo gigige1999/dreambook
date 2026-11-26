@@ -130,9 +130,16 @@ export interface GuestCase {
   confront: {
     accusation: string;
     prompt: string;
-    keyEvidenceId: string;
+    /** 需要同时指认的两件信物（事实 + 依据） */
+    keyEvidenceIds: string[];
     onCorrect: string;
     onWrong: string;
+    /** 时间线推演：把这三件事按发生顺序排好 */
+    timeline: {
+      prompt: string;
+      events: { id: string; label: string }[];
+      correctOrderIds: string[];
+    };
   };
   targetBookId: string;
   bookTitle: string;
