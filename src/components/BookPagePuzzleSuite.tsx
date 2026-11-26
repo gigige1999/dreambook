@@ -620,7 +620,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     const isDraggingPetal = draggingItemId === 'dry-petal';
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>温室试药台</span>
         </div>
@@ -642,10 +642,10 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
           }}
           className={`mt-2 rounded-[3px] border px-2.5 py-1.5 flex items-center justify-between gap-2 text-[11px] font-serif-body transition-all cursor-pointer ${
             petalMounted
-              ? 'border-[#5D8755] bg-[#E8F2DF] text-[#2B4B27]'
+              ? 'border-[#5D8755] text-[#2B4B27]'
               : isDraggingPetal
                 ? 'border-2 border-dashed border-[#8E2D20] bg-[#FCECC8] ring-2 ring-[#E5C175] text-[#5D2419]'
-                : 'border-dashed border-[#9E783B] bg-[#EFE0BC] text-[#5C4428] hover:bg-[#E7D4A8]'
+                : 'border-dashed border-[#9E783B] text-[#5C4428] hover:bg-[#EFE0BC]/40'
           }`}
         >
           <span>
@@ -687,7 +687,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
               applyDropper(localTool);
             }
           }}
-          className="mt-2 rounded-[4px] border border-[#C3A876] bg-[#F5EAD0] p-2 flex flex-col items-center cursor-pointer hover:bg-[#F1E2BE] transition-colors"
+          className="mt-2 px-1 py-1 flex flex-col items-center cursor-pointer transition-opacity hover:opacity-90"
         >
           <svg viewBox="0 0 230 120" className="w-full h-28" aria-hidden="true">
             <ellipse cx="115" cy="96" rx="70" ry="11" fill="#D5B97E" stroke="#7A5A2B" strokeWidth="1.5" />
@@ -872,7 +872,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>牛皮纸折封</span>
           <span className="tabular-nums">{stepDone}/3</span>
@@ -1013,7 +1013,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>台角暗格</span>
         </div>
@@ -1141,7 +1141,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     ];
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>温室总锁</span>
         </div>
@@ -1169,7 +1169,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
           className={`rounded-[3px] border px-2.5 py-2 flex items-center justify-between cursor-pointer transition-colors ${
             seedPlanted
               ? 'border-[#5D8755] bg-[#E8F2DF]'
-              : 'border-dashed border-[#9E783B] bg-[#EFE0BC] hover:bg-[#E7D4A8]'
+              : 'border-dashed border-[#9E783B] hover:bg-[#EFE0BC]/40'
           }`}
         >
           <div className="flex items-center gap-2">
@@ -1244,7 +1244,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>碎裂五线谱</span>
         </div>
@@ -1381,7 +1381,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>微缩琴台</span>
           <span className="tabular-nums">{melodyProgress}/3</span>
@@ -1591,7 +1591,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     const minDeg = watchMinute * 6;
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>回声怀表</span>
           {watchMounted && watchWound && (
@@ -1769,7 +1769,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     const gapOffset = curtainPulls === 0 ? 0 : curtainPulls === 1 ? 34 : 74;
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>剧院总锁</span>
           <span className="tabular-nums">{curtainPulls}/2</span>
@@ -1926,7 +1926,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     ];
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>红绳信袋</span>
           <span className="tabular-nums">{cutSequence.length}/3</span>
@@ -2087,7 +2087,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>石化蜡封</span>
           <span className="tabular-nums">{waxMeltSteps}/3</span>
@@ -2199,7 +2199,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>活字笔匣</span>
         </div>
@@ -2340,7 +2340,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     ];
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>旧肖像记忆盘</span>
           {frameRepaired && <span className="tabular-nums">{sootCleared.filter(Boolean).length}/3</span>}
@@ -2369,10 +2369,10 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
           }}
           className={`mb-2 rounded-[3px] border px-2.5 py-1.5 flex items-center justify-between gap-2 text-[11px] font-serif-body transition-all cursor-pointer ${
             frameRepaired
-              ? 'border-[#5D8755] bg-[#E8F2DF] text-[#2B4B27]'
+              ? 'border-[#5D8755] text-[#2B4B27]'
               : isDraggingShard
                 ? 'border-2 border-dashed border-[#8E2D20] bg-[#FCECC8] ring-2 ring-[#E5C175] text-[#5D2419]'
-                : 'border-dashed border-[#9E783B] bg-[#EFE0BC] text-[#5C4428] hover:bg-[#E7D4A8]'
+                : 'border-dashed border-[#9E783B] text-[#5C4428] hover:bg-[#EFE0BC]/40'
           }`}
         >
           <span>
@@ -2586,7 +2586,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     };
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>钟楼机芯</span>
         </div>
@@ -2608,7 +2608,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
           }}
           className={`mt-2 rounded-[3px] border px-2.5 py-1.5 flex items-center justify-between gap-2 text-[11px] font-serif-body transition-all cursor-pointer ${
             pinInserted
-              ? 'border-[#5D8755] bg-[#E8F2DF] text-[#2B4B27]'
+              ? 'border-[#5D8755] text-[#2B4B27]'
               : isDraggingPin
                 ? 'border-2 border-dashed border-[#8E2D20] bg-[#FCECC8] ring-2 ring-[#E5C175] text-[#5D2419]'
                 : 'border-dashed border-[#6D859B] bg-[#E5EEF5] text-[#2F4659] hover:bg-[#DAE7F2]'
@@ -2795,7 +2795,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     const shardsAligned = dialAngles.every((deg) => deg % 360 === 0);
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>碎瓷表盘</span>
         </div>
@@ -2883,7 +2883,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
     const iceScale = iceMeltSteps === 0 ? 1 : iceMeltSteps === 1 ? 0.86 : iceMeltSteps === 2 ? 0.72 : 0.45;
 
     return (
-      <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+      <div className="w-full max-w-[330px] py-1 text-[#241B14]">
         <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
           <span>封冻冰块</span>
           <span className="tabular-nums">{iceMeltSteps}/3</span>
@@ -3013,7 +3013,7 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
   };
 
   return (
-    <div className="w-full max-w-[330px] rounded-[4px] gilt-hairline-frame bg-[#FAF3DF]/95 p-3 text-[#241B14] shadow-sm">
+    <div className="w-full max-w-[330px] py-1 text-[#241B14]">
       <div className="flex items-center justify-between text-[11px] font-serif-body text-[#6E563B] pb-1.5 border-b border-[#D2BA8F]">
         <span>双环雪晶总锁</span>
       </div>

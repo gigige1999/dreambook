@@ -550,7 +550,7 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
             <button
               type="button"
               onClick={onBackToDesk}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-serif-body font-medium text-[#5C3A24] hover:text-[#241B14] border border-[#CBB998] bg-[#FCF8EE] hover:bg-[#EFE6D2] rounded transition-colors whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-1 text-xs font-serif-body text-[#5C3A24] hover:text-[#8E2D20] transition-colors whitespace-nowrap shrink-0"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>返回书桌</span>
@@ -582,10 +582,8 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                 libraryAudio.playBrassClick();
                 setIsNightLampMode((v) => !v);
               }}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-serif-body rounded border transition-colors whitespace-nowrap shrink-0 ${
-                isNightLampMode
-                  ? 'bg-[#2C1A24] border-[#8E5D45] text-[#F7DDA1]'
-                  : 'bg-[#FCF8EE] border-[#CBB998] text-[#4A4136] hover:bg-[#EFE6D2]'
+              className={`inline-flex items-center gap-1.5 text-xs font-serif-body transition-colors whitespace-nowrap shrink-0 ${
+                isNightLampMode ? 'text-[#7A3A28] font-medium' : 'text-[#5D5244] hover:text-[#241B14]'
               }`}
               title="调暗架灯可看见目标书脊的夜光荧光粉笔字"
             >
@@ -596,10 +594,8 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
             <button
               type="button"
               onClick={onToggleMagnifier}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-serif-body rounded border transition-colors whitespace-nowrap shrink-0 ${
-                isMagnifierActive
-                  ? 'bg-[#E2BD6B] border-[#9C7830] text-[#241B14] font-medium'
-                  : 'bg-[#FCF8EE] border-[#CBB998] text-[#4A4136] hover:bg-[#EFE6D2]'
+              className={`inline-flex items-center gap-1.5 text-xs font-serif-body transition-colors whitespace-nowrap shrink-0 ${
+                isMagnifierActive ? 'text-[#7A3A28] font-medium' : 'text-[#5D5244] hover:text-[#241B14]'
               }`}
             >
               <Eye className="w-3.5 h-3.5" />
@@ -608,7 +604,7 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
 
             <span aria-hidden="true" className="hidden sm:inline-block h-4 w-[1px] bg-[#D8C8AA]" />
 
-            <div className="flex items-center gap-1 p-0.5 bg-[#EAE0CA] border border-[#CBB998] rounded">
+            <div className="flex items-center gap-3">
               {SHELF_ZONES.map((zone) => {
                 const hasShimmer = isLampOn && zone.id === currentCase.shelfZone;
                 return (
@@ -616,10 +612,10 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                     key={zone.id}
                     type="button"
                     onClick={() => switchWing(zone.id)}
-                    className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-serif-body rounded-xs transition-colors whitespace-nowrap shrink-0 ${
+                    className={`inline-flex items-center gap-1 text-xs font-serif-body transition-colors whitespace-nowrap shrink-0 ${
                       activeZone === zone.id
-                        ? 'bg-[#FCF8EE] text-[#241B14] font-semibold'
-                        : 'text-[#5D5244] hover:text-[#241B14]'
+                        ? 'text-[#241B14] font-semibold underline underline-offset-4 decoration-[#8E2D20]/60'
+                        : 'text-[#5D5244]/85 hover:text-[#241B14]'
                     }`}
                   >
                     <SeasonSigilIcon
@@ -669,16 +665,22 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
               }`}
             />
 
+            {/* 顶部薄纱渐隐：让叠加在图上的小字可读，而不需要再加一层卡片 */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-20 z-20 bg-gradient-to-b from-[#150C07]/72 via-[#150C07]/38 to-transparent"
+            />
+
             {/* Compact Brass Wing Plaque & Controls */}
-            <div className="hidden sm:flex absolute top-2 left-2.5 z-30 items-center gap-2 px-2.5 py-1 rounded bg-[#2B1D13]/92 border border-[#C6A25E]/75 text-[#FAF0DA]">
+            <div className="hidden sm:flex absolute top-2 left-2.5 z-30 items-center gap-2 text-[#F6E7C6] drop-shadow-[0_1px_3px_rgba(18,10,5,0.9)]">
               <span className="font-display text-xs font-semibold tracking-wide">
                 {wingTheme.plaqueTitle}
               </span>
             </div>
 
             <div className="absolute top-2 right-2.5 z-30 flex items-center gap-1.5">
-              <div className="flex items-center gap-1 px-2 py-1 rounded bg-[#2B1D13]/92 border border-[#C6A25E]/75 text-[#FAF0DA]">
-                <span className="text-[10px] font-serif-body text-[#E6D2AC] whitespace-nowrap">
+              <div className="flex items-center gap-1.5 text-[#F6E7C6] drop-shadow-[0_1px_3px_rgba(18,10,5,0.9)]">
+                <span className="text-[10.5px] font-serif-body font-medium text-[#F6E7C6] whitespace-nowrap">
                   扶梯
                 </span>
                 {([0, 1, 2] as LadderBay[]).map((bay) => (
@@ -697,7 +699,7 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                 ))}
               </div>
 
-              <div className="hidden sm:flex items-center gap-1 px-1.5 py-1 rounded bg-[#2B1D13]/92 border border-[#C6A25E]/75 text-[#FAF0DA]">
+              <div className="hidden sm:flex items-center gap-1.5 text-[#F6E7C6] drop-shadow-[0_1px_3px_rgba(18,10,5,0.9)]">
                 <button
                   type="button"
                   onClick={scrollToTopShelves}
@@ -1104,9 +1106,6 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                 <p className="font-display text-[11px] font-semibold tracking-wide text-[#F6E2BA]">
                   随身工具架
                 </p>
-                <p className="text-[9.5px] font-serif-body text-[#D5C19D]">
-                  抽屉拾取 · 点选开锁
-                </p>
               </div>
 
               <div className="grid grid-cols-4 lg:grid-cols-1 gap-1.5">
@@ -1124,15 +1123,11 @@ export const ShelfSearchModal: React.FC<ShelfSearchModalProps> = ({
                           ? `${item.name}：${item.subtitle}`
                           : guide.emptyHint
                       }
-                      className={`flex flex-col items-center gap-1 p-1.5 rounded border text-center transition-colors ${
-                        !isCollected
-                          ? 'border-dashed border-[#9E7D58]/60 bg-[#25180F]/75 hover:bg-[#352316]'
-                          : isSelected
-                            ? 'border-[#F2CE7A] bg-[#66452A] ring-1 ring-[#F2CE7A]'
-                            : 'border-[#735237] bg-[#4C3421] hover:bg-[#5B3E28]'
+                      className={`flex flex-col items-center gap-1 rounded-[2px] py-2 text-center transition-colors ${
+                        isSelected ? 'text-[#F2CE7A]' : 'text-[#E8D6B4] hover:text-[#FBF0D8]'
                       }`}
                     >
-                      <div className="w-9 h-9 rounded-[3px] border-[1.5px] border-[#241B14] bg-[#F5EBD4] flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-[2px] border border-[#8A6B45]/70 flex items-center justify-center">
                         {isCollected ? (
                           <PocketItemArt id={item.id} className="w-6 h-6" />
                         ) : (

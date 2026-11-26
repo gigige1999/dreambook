@@ -79,7 +79,7 @@ const SeasonalBookInteractiveVisual: React.FC<{
   const renderRelicToken = (relicId: BookSatchelItemId, label: string) => {
     if (isRelicConsumed || isRelicCollected) {
       return (
-        <div className="mt-2 pt-1.5 border-t border-dashed border-[#C7B087] flex items-center justify-center gap-1.5 text-[11px] font-serif-body text-[#6E563B]">
+        <div className="mt-2 pt-1.5 border-t border-[#CDB892]/55 flex items-center justify-center gap-1.5 text-[11px] font-serif-body text-[#6E563B]">
           <Check className="w-3.5 h-3.5 text-[#5D8755] shrink-0" />
           <span>{isRelicConsumed ? `「${label}」已嵌入右页` : `「${label}」已入工具匣`}</span>
         </div>
@@ -87,7 +87,7 @@ const SeasonalBookInteractiveVisual: React.FC<{
     }
 
     return (
-      <div className="mt-2 pt-1.5 border-t border-dashed border-[#C7B087] flex items-center justify-center">
+      <div className="mt-2 pt-1.5 border-t border-[#CDB892]/55 flex items-center justify-center">
         <div
           draggable
           onDragStart={(e) => {
@@ -120,7 +120,7 @@ const SeasonalBookInteractiveVisual: React.FC<{
     };
 
     return (
-      <div className="mt-3.5 rounded-[3px] gilt-hairline-frame bg-[#F7EED6]/80 px-3 py-2">
+      <div className="mt-3.5 px-0 py-1">
         <div className="flex items-center justify-center">
           <svg
             viewBox="0 0 220 96"
@@ -195,7 +195,7 @@ const SeasonalBookInteractiveVisual: React.FC<{
     };
 
     return (
-      <div className="mt-3.5 rounded-[3px] gilt-hairline-frame bg-[#F7EED6]/80 px-3 py-2">
+      <div className="mt-3.5 px-0 py-1">
 
         <div className="relative rounded-[3px] border border-[#4D301D] bg-[#3A2416] p-1.5 shadow-inner">
           <div className="relative h-16 flex gap-0.5">
@@ -256,7 +256,7 @@ const SeasonalBookInteractiveVisual: React.FC<{
     };
 
     return (
-      <div className="mt-3.5 rounded-[3px] gilt-hairline-frame bg-[#F7EED6]/80 px-3 py-2">
+      <div className="mt-3.5 px-0 py-1">
         <div className="mx-auto w-[148px] p-1 rounded-[3px] border border-[#8C6432] bg-[#E8D5AC] shadow-inner">
           <div className="grid grid-cols-2 gap-[2px]">
             {([0, 1, 2, 3] as const).map((idx) => {
@@ -325,7 +325,7 @@ const SeasonalBookInteractiveVisual: React.FC<{
   };
 
   return (
-    <div className="mt-3.5 rounded-[3px] gilt-hairline-frame bg-[#F7EED6]/80 px-3 py-2">
+    <div className="mt-3.5 px-0 py-1">
 
       <button
         type="button"
@@ -830,10 +830,10 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
               <VictorianCornerFiligree color="#9B753D" sizeClass="w-4 h-4" />
 
               {/* Subtle Inner Engraved Page Frame */}
-              <div className="relative z-[4] flex-1 flex flex-col justify-between rounded-[2px] gilt-hairline-frame px-4 py-3.5 sm:px-5 sm:py-4">
+              <div className="relative z-[4] flex-1 flex flex-col justify-between px-2 sm:px-3 pb-4">
                 <div>
                   {/* Running Editorial Header */}
-                  <div className="flex items-center justify-between gap-2 text-[11px] font-serif-body text-[#6E563B] pb-2 mb-4 border-b border-[#CDB892]">
+                  <div className="flex items-center justify-between gap-2 text-[11px] font-serif-body text-[#6E563B] pb-2 mb-4 border-b border-[#CDB892]/70">
                     <div className="flex items-center gap-1.5 min-w-0">
                       <SeasonSigilIcon season={currentCase.season} className="w-3.5 h-3.5 shrink-0" />
                       <span className="italic truncate">《{currentCase.bookTitle}》</span>
@@ -857,7 +857,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
                   <div className="space-y-3.5">
                     {firstPara && (
                       <p className="font-serif-body text-[14.5px] sm:text-[15.5px] text-[#2A1F16] leading-[1.92]">
-                        <span className="float-left mr-2.5 mt-1 w-10 h-10 flex items-center justify-center rounded-[2px] border border-[#9E7840] bg-gradient-to-b from-[#6B252B] to-[#4A171C] font-display text-xl font-bold text-[#F8E7BF] shadow-xs select-none">
+                        <span className="float-left mr-2 mt-1 font-display text-[46px] leading-[0.82] text-[#6B252B] select-none">
                           {dropCapChar}
                         </span>
                         {firstParaRest}
@@ -893,9 +893,9 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
                 </div>
 
                 {/* Bottom Handwritten Curator Marginalia + Prev Button */}
-                <div className="mt-5 pt-3 border-t border-dashed border-[#C7B087] flex items-end justify-between gap-3">
+                <div className="mt-4 pt-3 border-t border-[#CDB892]/55 flex items-end justify-between gap-2">
                   {currentPage.keepsakeNote ? (
-                    <div className="pl-2.5 border-l-2 border-[#A87F46]/80 min-w-0">
+                    <div className="pl-2.5 border-l-2 border-[#A87F46]/80 min-w-0 max-w-[62%]">
                       <p className="font-handwriting text-[15px] leading-snug text-[#6D4426] -rotate-[0.5deg]">
                         注：{currentPage.keepsakeNote}
                       </p>
@@ -908,7 +908,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
                     type="button"
                     disabled={safePageIndex === 0}
                     onClick={goPrevPage}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-serif-body font-medium text-[#4A3826] hover:text-[#8E2D20] border border-[#C6AF88] bg-[#FAF2DD] rounded-[2px] disabled:opacity-30 disabled:pointer-events-none transition-colors whitespace-nowrap shrink-0"
+                    className="inline-flex items-center gap-1 text-[11px] font-serif-body text-[#6E563B] hover:text-[#8E2D20] disabled:opacity-25 disabled:pointer-events-none transition-colors whitespace-nowrap shrink-0"
                   >
                     <ChevronLeft className="w-3.5 h-3.5" />
                     <span>上一页</span>
@@ -927,7 +927,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
               <DeckledPaperEdge side="right" />
               <VictorianCornerFiligree color="#9B753D" sizeClass="w-4 h-4" />
 
-              <div className="relative z-[4] flex-1 flex flex-col justify-between rounded-[2px] gilt-hairline-frame px-4 py-3.5 sm:px-5 sm:py-4">
+              <div className="relative z-[4] flex-1 flex flex-col justify-between px-2 sm:px-3 pb-4">
                 <div className="flex items-center justify-between gap-2 text-[11px] font-serif-body text-[#6E563B] pb-2 mb-3 border-b border-[#CDB892] tabular-nums">
                   <span>
                     {isPuzzleSolved && inspectingMechanismPage !== currentPage.pageNumber
@@ -1094,7 +1094,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
                   </div>
                 )}
 
-                <div className="mt-4 pt-3 border-t border-dashed border-[#C7B087] flex items-end justify-between gap-3">
+                <div className="mt-4 pt-3 border-t border-[#CDB892]/55 flex items-end justify-between gap-2">
                   <p className="text-[11.5px] font-serif-body italic text-[#6D5A42] line-clamp-2">
                     {evidenceObj?.quote ?? ''}
                   </p>
@@ -1103,7 +1103,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
                     type="button"
                     disabled={safePageIndex >= currentCase.pages.length - 1}
                     onClick={goNextPage}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-serif-body font-medium text-[#4A3826] hover:text-[#8E2D20] border border-[#C6AF88] bg-[#FAF2DD] rounded-[2px] disabled:opacity-30 disabled:pointer-events-none transition-colors whitespace-nowrap shrink-0"
+                    className="inline-flex items-center gap-1 text-[11px] font-serif-body text-[#6E563B] hover:text-[#8E2D20] disabled:opacity-25 disabled:pointer-events-none transition-colors whitespace-nowrap shrink-0"
                   >
                     <span>下一页</span>
                     <ChevronRight className="w-3.5 h-3.5" />
