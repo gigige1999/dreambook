@@ -6,3 +6,9 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# npm cache used for offline installs on this machine
+.npm-cache/
+
+# 原始美术素材（体积大，不进仓库）
+/素材/
