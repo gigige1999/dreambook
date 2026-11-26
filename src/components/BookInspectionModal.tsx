@@ -1152,7 +1152,7 @@ export const BookInspectionModal: React.FC<BookInspectionModalProps> = ({
         {/* Right Side Column: Vertical Walnut & Brass Tool Satchel (5 Slots, Keeps Consumed Items Visible) */}
         <aside
           aria-label="页间工具匣"
-          className="w-full lg:w-[206px] shrink-0 rounded-[6px] border-[2px] border-[#382113] bg-gradient-to-b from-[#332014] via-[#27170E] to-[#1D1009] p-3 text-[#FAF4E8] shadow-[0_22px_48px_rgba(8,4,2,0.72)] flex flex-col gap-3"
+          className="hidden w-full lg:w-[206px] shrink-0 rounded-[6px] border-[2px] border-[#382113] bg-gradient-to-b from-[#332014] via-[#27170E] to-[#1D1009] p-3 text-[#FAF4E8] shadow-[0_22px_48px_rgba(8,4,2,0.72)] flex flex-col gap-3"
         >
           <div>
             <div className="flex items-center justify-between gap-2 pb-2 border-b border-[#C89F55]/40">

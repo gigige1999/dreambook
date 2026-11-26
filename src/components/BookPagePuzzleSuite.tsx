@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Check, Flame, RotateCw, Sparkles } from 'lucide-react';
 import { SeasonId } from '../types/game';
 import { libraryAudio } from '../utils/audio';
+import { PageMechanism } from './PageMechanism';
 
 export type BookSatchelItemId =
   | 'dry-petal'
@@ -550,6 +551,17 @@ export const BookPagePuzzleSuite: React.FC<BookPagePuzzleSuiteProps> = ({
       onSolved(targetEvidenceId);
     }, 900);
   };
+
+  /* 页内机关改为「三步推理」，具体数据见 PageMechanism.tsx */
+  return (
+    <PageMechanism
+      season={season}
+      pageNumber={pageNumber}
+      evidenceId={evidenceId}
+      isSolved={isSolved}
+      onSolved={onSolved}
+    />
+  );
 
   /* =========================================================================
    * SEASON 1: SPRING
