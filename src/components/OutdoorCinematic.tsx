@@ -7,8 +7,8 @@ import { libraryAudio } from '../utils/audio';
  * 以极简字幕替代原有的弹窗式手谕，讲清故事背景后自然过渡到第一位来客。
  */
 
-const DAY_SRC = '/src/assets/scene/outdoor-day.jpg';
-const NIGHT_SRC = '/src/assets/scene/outdoor-night.jpg';
+const DAY_SRC = 'src/assets/scene/outdoor-day.jpg';
+const NIGHT_SRC = 'src/assets/scene/outdoor-night.jpg';
 
 type LightingStage = 0 | 1 | 2;
 

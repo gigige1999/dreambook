@@ -40,9 +40,9 @@ export interface WingVisualTheme {
 export const WING_VISUAL_THEMES: Record<ShelfZoneId, WingVisualTheme> = {
   spring: {
     id: 'spring',
-    backdropUrl: '/src/assets/images/wing_spring_conservatory_1795574456613.jpg',
+    backdropUrl: 'src/assets/images/wing_spring_conservatory_1795574456613.jpg',
     backdropAlt: '春季植物学温室藏书阁手绘水彩拱窗与藤蔓背景',
-    cabinetCutoutUrl: '/src/assets/images/cabinet_spring_oak_cutout.png',
+    cabinetCutoutUrl: 'src/assets/images/cabinet_spring_oak_cutout.png',
     cabinetAspectRatio: '738 / 829',
     shelfBounds: {
       top: { top: '21.6%', height: '16.0%', left: '10.4%', right: '10.4%' },
@@ -58,9 +58,9 @@ export const WING_VISUAL_THEMES: Record<ShelfZoneId, WingVisualTheme> = {
   },
   summer: {
     id: 'summer',
-    backdropUrl: '/src/assets/images/wing_summer_theater_1795574457482.jpg',
+    backdropUrl: 'src/assets/images/wing_summer_theater_1795574457482.jpg',
     backdropAlt: '夏季永夏剧院乐谱阁手绘水彩天鹅绒帷幕与弧窗背景',
-    cabinetCutoutUrl: '/src/assets/images/cabinet_summer_walnut_cutout.png',
+    cabinetCutoutUrl: 'src/assets/images/cabinet_summer_walnut_cutout.png',
     cabinetAspectRatio: '807 / 755',
     shelfBounds: {
       top: { top: '24.0%', height: '16.0%', left: '9.6%', right: '9.6%' },
@@ -76,9 +76,9 @@ export const WING_VISUAL_THEMES: Record<ShelfZoneId, WingVisualTheme> = {
   },
   autumn: {
     id: 'autumn',
-    backdropUrl: '/src/assets/images/wing_autumn_postoffice_1795574457444.jpg',
+    backdropUrl: 'src/assets/images/wing_autumn_postoffice_1795574457444.jpg',
     backdropAlt: '秋季记忆邮局藏书阁手绘水彩木窗与漂浮信笺背景',
-    cabinetCutoutUrl: '/src/assets/images/cabinet_autumn_mahogany_cutout.png',
+    cabinetCutoutUrl: 'src/assets/images/cabinet_autumn_mahogany_cutout.png',
     cabinetAspectRatio: '861 / 808',
     shelfBounds: {
       top: { top: '21.4%', height: '15.1%', left: '8.6%', right: '8.6%' },
@@ -94,9 +94,9 @@ export const WING_VISUAL_THEMES: Record<ShelfZoneId, WingVisualTheme> = {
   },
   winter: {
     id: 'winter',
-    backdropUrl: '/src/assets/images/wing_winter_clocktower_1795574457724.jpg',
+    backdropUrl: 'src/assets/images/wing_winter_clocktower_1795574457724.jpg',
     backdropAlt: '冬季永冻钟楼藏书阁手绘水彩圆花窗与悬雪背景',
-    cabinetCutoutUrl: '/src/assets/images/cabinet_winter_fir_cutout.png',
+    cabinetCutoutUrl: 'src/assets/images/cabinet_winter_fir_cutout.png',
     cabinetAspectRatio: '654 / 804',
     shelfBounds: {
       top: { top: '28.0%', height: '14.4%', left: '9.4%', right: '9.4%' },
@@ -234,14 +234,14 @@ export const HorizontalBookStackArt: React.FC<{
 const getFillerSpritesForZone = (zone: ShelfZoneId): [string, string] => {
   switch (zone) {
     case 'spring':
-      return ['/src/assets/images/book_sprite_4.png', '/src/assets/images/book_sprite_1.png'];
+      return ['src/assets/images/book_sprite_4.png', 'src/assets/images/book_sprite_1.png'];
     case 'summer':
-      return ['/src/assets/images/book_sprite_3.png', '/src/assets/images/book_sprite_2.png'];
+      return ['src/assets/images/book_sprite_3.png', 'src/assets/images/book_sprite_2.png'];
     case 'autumn':
-      return ['/src/assets/images/book_sprite_4.png', '/src/assets/images/book_sprite_5.png'];
+      return ['src/assets/images/book_sprite_4.png', 'src/assets/images/book_sprite_5.png'];
     case 'winter':
     default:
-      return ['/src/assets/images/book_sprite_2.png', '/src/assets/images/book_sprite_6.png'];
+      return ['src/assets/images/book_sprite_2.png', 'src/assets/images/book_sprite_6.png'];
   }
 };
 
@@ -524,12 +524,12 @@ const getBookMotifSymbol = (bookId: string): string => {
 };
 
 const BOOK_SPRITE_URLS = [
-  '/src/assets/images/book_sprite_1.png', // 0: sage botanical green + brass
-  '/src/assets/images/book_sprite_2.png', // 1: deep midnight navy + gilt ribs
-  '/src/assets/images/book_sprite_3.png', // 2: terracotta burgundy + marbled cover
-  '/src/assets/images/book_sprite_4.png', // 3: honey-ochre antique leather
-  '/src/assets/images/book_sprite_5.png', // 4: dusty mauve-plum cloth
-  '/src/assets/images/book_sprite_6.png', // 5: slate graphite winter hardcover
+  'src/assets/images/book_sprite_1.png', // 0: sage botanical green + brass
+  'src/assets/images/book_sprite_2.png', // 1: deep midnight navy + gilt ribs
+  'src/assets/images/book_sprite_3.png', // 2: terracotta burgundy + marbled cover
+  'src/assets/images/book_sprite_4.png', // 3: honey-ochre antique leather
+  'src/assets/images/book_sprite_5.png', // 4: dusty mauve-plum cloth
+  'src/assets/images/book_sprite_6.png', // 5: slate graphite winter hardcover
 ];
 
 const getBookSpriteUrl = (book: ShelfBookItem, styleIndex: number): string => {

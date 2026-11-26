@@ -7,29 +7,29 @@ interface KeepsakeArtProps {
 }
 
 const EVIDENCE_ARTWORK_MAP: Record<string, { src: string; label: string }> = {
-  'ev-sp-pollen': { src: '/src/assets/images/keepsakes/ev-sp-pollen.jpg', label: '记忆花粉插画' },
-  'ev-sp-promise': { src: '/src/assets/images/keepsakes/ev-sp-promise.jpg', label: '旧约定信笺插画' },
-  'ev-sp-pot': { src: '/src/assets/images/keepsakes/ev-sp-pot.jpg', label: '空花盆插画' },
-  'ev-sp-sprout': { src: '/src/assets/images/keepsakes/ev-sp-sprout.jpg', label: '嫩芽符号徽章插画' },
-  'ev-su-score': { src: '/src/assets/images/keepsakes/ev-su-score.jpg', label: '碎乐谱残页插画' },
-  'ev-su-key': { src: '/src/assets/images/keepsakes/ev-su-key.jpg', label: '金色琴键插画' },
-  'ev-su-watch': { src: '/src/assets/images/keepsakes/ev-su-watch.jpg', label: '回声怀表插画' },
-  'ev-su-ticket': { src: '/src/assets/images/keepsakes/ev-su-ticket.jpg', label: '剧院空票插画' },
-  'ev-au-letter': { src: '/src/assets/images/keepsakes/ev-au-letter.jpg', label: '消散信件插画' },
-  'ev-au-wax': { src: '/src/assets/images/keepsakes/ev-au-wax.jpg', label: '封蜡纹章插画' },
-  'ev-au-quill': { src: '/src/assets/images/keepsakes/ev-au-quill.jpg', label: '羽毛笔插画' },
-  'ev-au-portrait': { src: '/src/assets/images/keepsakes/ev-au-portrait.jpg', label: '旧肖像碎片插画' },
-  'ev-wi-gear': { src: '/src/assets/images/keepsakes/ev-wi-gear.jpg', label: '黄铜齿轮插画' },
-  'ev-wi-dial': { src: '/src/assets/images/keepsakes/ev-wi-dial.jpg', label: '碎钟面插画' },
-  'ev-wi-key': { src: '/src/assets/images/keepsakes/ev-wi-key.jpg', label: '冰晶钥匙插画' },
-  'ev-wi-snow': { src: '/src/assets/images/keepsakes/ev-wi-snow.jpg', label: '雪晶符号插画' },
+  'ev-sp-pollen': { src: 'src/assets/images/keepsakes/ev-sp-pollen.jpg', label: '记忆花粉插画' },
+  'ev-sp-promise': { src: 'src/assets/images/keepsakes/ev-sp-promise.jpg', label: '旧约定信笺插画' },
+  'ev-sp-pot': { src: 'src/assets/images/keepsakes/ev-sp-pot.jpg', label: '空花盆插画' },
+  'ev-sp-sprout': { src: 'src/assets/images/keepsakes/ev-sp-sprout.jpg', label: '嫩芽符号徽章插画' },
+  'ev-su-score': { src: 'src/assets/images/keepsakes/ev-su-score.jpg', label: '碎乐谱残页插画' },
+  'ev-su-key': { src: 'src/assets/images/keepsakes/ev-su-key.jpg', label: '金色琴键插画' },
+  'ev-su-watch': { src: 'src/assets/images/keepsakes/ev-su-watch.jpg', label: '回声怀表插画' },
+  'ev-su-ticket': { src: 'src/assets/images/keepsakes/ev-su-ticket.jpg', label: '剧院空票插画' },
+  'ev-au-letter': { src: 'src/assets/images/keepsakes/ev-au-letter.jpg', label: '消散信件插画' },
+  'ev-au-wax': { src: 'src/assets/images/keepsakes/ev-au-wax.jpg', label: '封蜡纹章插画' },
+  'ev-au-quill': { src: 'src/assets/images/keepsakes/ev-au-quill.jpg', label: '羽毛笔插画' },
+  'ev-au-portrait': { src: 'src/assets/images/keepsakes/ev-au-portrait.jpg', label: '旧肖像碎片插画' },
+  'ev-wi-gear': { src: 'src/assets/images/keepsakes/ev-wi-gear.jpg', label: '黄铜齿轮插画' },
+  'ev-wi-dial': { src: 'src/assets/images/keepsakes/ev-wi-dial.jpg', label: '碎钟面插画' },
+  'ev-wi-key': { src: 'src/assets/images/keepsakes/ev-wi-key.jpg', label: '冰晶钥匙插画' },
+  'ev-wi-snow': { src: 'src/assets/images/keepsakes/ev-wi-snow.jpg', label: '雪晶符号插画' },
 };
 
 const GIFT_ARTWORK_MAP: Record<string, { src: string; label: string }> = {
-  'gift-isolde': { src: '/src/assets/images/keepsakes/gift-isolde.jpg', label: '挚友的玻璃花插画' },
-  'gift-arthur': { src: '/src/assets/images/keepsakes/gift-arthur.jpg', label: '学徒的银铃插画' },
-  'gift-martha': { src: '/src/assets/images/keepsakes/gift-martha.jpg', label: '丈夫的回信插画' },
-  'gift-samuel': { src: '/src/assets/images/keepsakes/gift-samuel.jpg', label: '一瞬冰晶插画' },
+  'gift-isolde': { src: 'src/assets/images/keepsakes/gift-isolde.jpg', label: '挚友的玻璃花插画' },
+  'gift-arthur': { src: 'src/assets/images/keepsakes/gift-arthur.jpg', label: '学徒的银铃插画' },
+  'gift-martha': { src: 'src/assets/images/keepsakes/gift-martha.jpg', label: '丈夫的回信插画' },
+  'gift-samuel': { src: 'src/assets/images/keepsakes/gift-samuel.jpg', label: '一瞬冰晶插画' },
 };
 
 /**

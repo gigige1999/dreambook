@@ -15,22 +15,22 @@ import { SeasonSigilIcon } from './VisualKeepsakes';
 
 const SEASON_SCENE: Record<SeasonId, { src: string; label: string; seasonName: string }> = {
   spring: {
-    src: '/src/assets/scene/outdoor-spring.jpg',
+    src: 'src/assets/scene/outdoor-spring.jpg',
     label: '春 · 温室梦芽',
     seasonName: '春',
   },
   summer: {
-    src: '/src/assets/scene/outdoor-summer.jpg',
+    src: 'src/assets/scene/outdoor-summer.jpg',
     label: '夏 · 幻声剧院',
     seasonName: '夏',
   },
   autumn: {
-    src: '/src/assets/scene/outdoor-autumn.jpg',
+    src: 'src/assets/scene/outdoor-autumn.jpg',
     label: '秋 · 记忆邮局',
     seasonName: '秋',
   },
   winter: {
-    src: '/src/assets/scene/outdoor-winter.jpg',
+    src: 'src/assets/scene/outdoor-winter.jpg',
     label: '冬 · 钟楼雪夜',
     seasonName: '冬',
   },
@@ -44,12 +44,12 @@ const SEASON_WHISPER: Record<SeasonId, string> = {
 };
 
 const DOOR_FRAMES = [
-  '/src/assets/scene/door-1-closed.jpg',
-  '/src/assets/scene/door-2-open.jpg',
-  '/src/assets/scene/door-3-enter.jpg',
+  'src/assets/scene/door-1-closed.jpg',
+  'src/assets/scene/door-2-open.jpg',
+  'src/assets/scene/door-3-enter.jpg',
 ] as const;
 
-const HALL_MAIN = '/src/assets/scene/hall-main.jpg';
+const HALL_MAIN = 'src/assets/scene/hall-main.jpg';
 
 /** 实景完整播放时长（不被任何元素遮挡） */
 const SCENE_HOLD_MS = 4600;

@@ -25,7 +25,7 @@ import {
   SeasonSigilIcon,
 } from './VisualKeepsakes';
 
-const RITUAL_TABLETOP_ART = '/src/assets/images/desk_ritual_tabletop_clean.jpg';
+const RITUAL_TABLETOP_ART = 'src/assets/images/desk_ritual_tabletop_clean.jpg';
 const ROMAN_SLOTS = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ'] as const;
 
 interface KnotResolutionModalProps {

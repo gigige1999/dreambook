@@ -6,6 +6,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // 相对路径构建：既能部署在域名根，也能部署在 GitHub Pages 子路径（/dreambook/）下
+    base: './',
     plugins: [
       react(),
       tailwindcss(),

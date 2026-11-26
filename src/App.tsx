@@ -20,7 +20,7 @@ import { GUEST_CASES } from './data/libraryCases';
 import { GamePhase } from './types/game';
 import { libraryAudio } from './utils/audio';
 
-const LIBRARY_BACKDROP = '/src/assets/scene/hall-main.jpg';
+const LIBRARY_BACKDROP = 'src/assets/scene/hall-main.jpg';
 const INTRO_SEEN_KEY = 'morning-dream-library:intro-seen-v1';
 
 const TEA_NOTES = [

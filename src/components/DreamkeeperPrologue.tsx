@@ -13,7 +13,7 @@ import {
   DeskTeacupArt,
 } from './VisualKeepsakes';
 
-const LIBRARY_BACKDROP = '/src/assets/images/library_interior_rusty_fresh_1795439953648.jpg';
+const LIBRARY_BACKDROP = 'src/assets/images/library_interior_rusty_fresh_1795439953648.jpg';
 
 interface DreamkeeperPrologueProps {
   onComplete: () => void;

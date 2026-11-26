@@ -841,7 +841,7 @@ export const GUEST_CASES: GuestCase[] = [
     guestName: '伊索尔德',
     englishName: 'Isolde',
     occupation: '梦芽守林人 · 植物记忆魔法',
-    portraitUrl: '/src/assets/scene/portrait-spring.jpg',
+    portraitUrl: 'src/assets/scene/portrait-spring.jpg',
     arrivalLine: '门上的黄铜风铃响起带着草叶清气的声音，一位发间藏着细小嫩芽、指尖泛着淡绿微光的维多利亚少女轻步走来。',
     greetingDialogue:
       '“早安，图书管理员。我能听见植物在梦里生长的声音……可自从挚友在花期到来前失踪，我只要一说出‘永远’，花朵就会静止。我每天都在回到同一个发芽的梦境里，生怕春天只是会醒来的一场梦。”',
@@ -1052,7 +1052,7 @@ export const GUEST_CASES: GuestCase[] = [
     guestName: '亚瑟',
     englishName: 'Arthur',
     occupation: '幻声钢琴师 · 音乐入梦',
-    portraitUrl: '/src/assets/scene/portrait-summer.jpg',
+    portraitUrl: 'src/assets/scene/portrait-summer.jpg',
     arrivalLine: '阳光被窗棂切出金色光柱，一位身着深蓝灰维多利亚西装、领口绣着音符暗影的钢琴师走近桌前，指尖泛着淡淡金色灵光。',
     greetingDialogue:
       '“日安，馆长。我的琴声能替人推开梦境之门……可三年前那场盛夏演出，我弹错了《召唤之曲》中的一个音，学徒就在众目睽睽下被卷进了幻镜，从此消失在回声里。是不是我的手指杀死了他？”',
@@ -1263,7 +1263,7 @@ export const GUEST_CASES: GuestCase[] = [
     guestName: '玛莎',
     englishName: 'Martha',
     occupation: '笔迹女巫 · 文字存忆',
-    portraitUrl: '/src/assets/scene/portrait-autumn.jpg',
+    portraitUrl: 'src/assets/scene/portrait-autumn.jpg',
     arrivalLine: '落叶随微风掠过门槛，一位披着暖灰羊毛披肩的年迈女抄写员缓步而来，手里那支羽毛笔正散发着淡淡的紫色微光。',
     greetingDialogue:
       '“打扰你了，年轻的馆长。我帮别人抄写了一辈子书信，也能用文字把记忆锁在纸上……可先生走后，我越是想记下他的声音、笑容和那句‘回家’，信纸上的字就散得越快，有些信甚至重得像石头。”',
@@ -1474,7 +1474,7 @@ export const GUEST_CASES: GuestCase[] = [
     guestName: '塞缪尔',
     englishName: 'Samuel',
     occupation: '时间囚钟匠 · 冰晶时间魔法',
-    portraitUrl: '/src/assets/scene/portrait-winter.jpg',
+    portraitUrl: 'src/assets/scene/portrait-winter.jpg',
     arrivalLine: '细雪无声贴在窗玻璃上，一位穿着深石墨灰长外套、胸前垂着冰晶吊坠的沉默钟表匠走近桌边，指尖正冻在透明的时间气泡里。',
     greetingDialogue:
       '“晚上好……我能修补世上任何一道时间的裂缝，唯独修不好自己的愧疚。为了等一个人回来，我把自己的时间封进冰钟里——结果时间真的停止了，可我同时也失去了对方到来的可能性。”',

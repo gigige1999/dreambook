@@ -42,7 +42,7 @@ interface LibraryStageProps {
   onOpenArchive: () => void;
 }
 
-const LIBRARY_BACKDROP = '/src/assets/scene/hall-main.jpg';
+const LIBRARY_BACKDROP = 'src/assets/scene/hall-main.jpg';
 
 const GUEST_MAGNIFIER_OBSERVATIONS: Record<string, string> = {
   spring: '透过黄铜镜片，你看见伊索尔德指尖沾着细碎的金色花粉，袖口还别着一枚褪色的枯萎花芽标本。',

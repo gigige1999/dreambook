@@ -1,5 +1,7 @@
 # 晨露梦境图书馆 · The Morning Dream Library
 
+**在线试玩**：https://gigige1999.github.io/dreambook/
+
 > 第一人称清新治愈系英伦复古梦境图书馆解谜游戏。以四季梦书为引，为迷途旅人解开被时光封存的执念。
 
 ![首页](docs/screenshot-title.jpg)
