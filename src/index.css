@@ -1,0 +1,773 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", "Noto Serif SC", Georgia, serif;
+  --font-serif-body: "Lora", "Noto Serif SC", Georgia, serif;
+  --font-sans: "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-hand: "Long Cang", "Kaiti SC", "STKaiti", "Lora", Georgia, serif;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    font-family: var(--font-sans);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
+/* Subtle paper texture & wood grain helpers */
+.bg-oak-desk {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 224, 170, 0.14), transparent 65%),
+    linear-gradient(180deg, #7C5537 0%, #5F3F26 48%, #472D1A 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 238, 208, 0.32),
+    inset 0 10px 22px rgba(32, 18, 8, 0.36),
+    0 -8px 28px rgba(24, 20, 14, 0.28);
+}
+
+.bg-burgundy-blotter {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(226, 184, 120, 0.14), transparent 70%),
+    linear-gradient(180deg, #5F2228 0%, #4A181D 58%, #391115 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 224, 188, 0.18),
+    inset 0 0 28px rgba(22, 6, 8, 0.48),
+    0 4px 14px rgba(18, 10, 6, 0.38);
+}
+
+/* Embossed Victorian Burgundy Hardcover Journal Leather */
+.bg-embossed-leather {
+  background-color: #531B20;
+  background-image:
+    radial-gradient(circle at 50% 22%, rgba(196, 130, 88, 0.14), transparent 65%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(22, 5, 7, 0.14) 0px,
+      rgba(22, 5, 7, 0.14) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 210, 170, 0.04) 0px,
+      rgba(255, 210, 170, 0.04) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    linear-gradient(175deg, #642228 0%, #4B171C 52%, #340D11 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(242, 200, 135, 0.25),
+    inset 0 0 34px rgba(16, 4, 5, 0.62),
+    0 28px 62px rgba(10, 5, 3, 0.74);
+}
+
+.journal-ruled-page {
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 27px,
+      rgba(148, 114, 70, 0.13) 27px,
+      rgba(148, 114, 70, 0.13) 28px
+    );
+}
+
+.bg-parchment {
+  background-color: #F6EFE0;
+  background-image:
+    radial-gradient(circle at 14% 22%, rgba(154, 116, 66, 0.08) 0%, transparent 2px),
+    radial-gradient(circle at 78% 14%, rgba(148, 110, 62, 0.07) 0%, transparent 1.5px),
+    radial-gradient(circle at 86% 78%, rgba(142, 106, 60, 0.08) 0%, transparent 2px),
+    radial-gradient(circle at 24% 84%, rgba(148, 112, 64, 0.07) 0%, transparent 2px),
+    radial-gradient(ellipse at 86% 84%, rgba(196, 162, 108, 0.12), transparent 56%),
+    radial-gradient(ellipse at 14% 88%, rgba(186, 152, 98, 0.11), transparent 50%),
+    repeating-linear-gradient(0deg, rgba(132, 98, 56, 0.022) 0px, rgba(132, 98, 56, 0.022) 1px, transparent 1px, transparent 4px),
+    linear-gradient(176deg, #FAF5E7 0%, #F4EBD4 56%, #EBDEC0 100%);
+}
+
+.bg-parchment.journal-ruled-page {
+  background-color: #F6EFE0;
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 27px,
+      rgba(148, 114, 70, 0.13) 27px,
+      rgba(148, 114, 70, 0.13) 28px
+    ),
+    radial-gradient(ellipse at 86% 84%, rgba(196, 162, 108, 0.12), transparent 56%),
+    radial-gradient(ellipse at 14% 88%, rgba(186, 152, 98, 0.11), transparent 50%),
+    repeating-linear-gradient(0deg, rgba(132, 98, 56, 0.024) 0px, rgba(132, 98, 56, 0.024) 1px, transparent 1px, transparent 4px),
+    linear-gradient(176deg, #FAF5E7 0%, #F4EBD4 56%, #EBDEC0 100%);
+}
+
+.font-handwriting {
+  font-family: var(--font-hand);
+}
+
+/* Refined watercolor cotton stationery folio with soft warm washes */
+.bg-vintage-folio {
+  background-color: #F7F0DF;
+  background-image:
+    radial-gradient(ellipse at 14% 12%, rgba(255, 253, 246, 0.85), transparent 50%),
+    radial-gradient(ellipse at 88% 86%, rgba(198, 162, 106, 0.16), transparent 54%),
+    radial-gradient(ellipse at 82% 16%, rgba(188, 152, 98, 0.11), transparent 46%),
+    repeating-linear-gradient(0deg, rgba(128, 96, 54, 0.02) 0px, rgba(128, 96, 54, 0.02) 1px, transparent 1px, transparent 4px),
+    linear-gradient(176deg, #FCF8EC 0%, #F5ECDA 62%, #ECE0C4 100%);
+}
+
+/* Delicate gilt hairline border framing for watercolor folios */
+.gilt-hairline-frame {
+  border: 1px solid rgba(196, 158, 86, 0.72);
+  box-shadow:
+    inset 0 0 0 2px rgba(252, 248, 236, 0.65),
+    inset 0 0 0 3px rgba(196, 158, 86, 0.32);
+}
+
+/* Refined bronze-walnut frame with delicate inner gold hairline */
+.desk-ink-card {
+  border: 1px solid rgba(108, 76, 42, 0.72);
+  box-shadow:
+    inset 0 0 0 1px rgba(206, 170, 102, 0.45),
+    inset 0 0 18px rgba(154, 118, 68, 0.09),
+    0 10px 24px rgba(18, 10, 5, 0.32);
+}
+
+/* Crimson wax-seal CTA styling */
+.victorian-wax-btn {
+  background: linear-gradient(180deg, #A23A2B 0%, #862B1F 100%);
+  border: 1.5px solid #4E160F;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 224, 210, 0.25),
+    0 4px 10px rgba(34, 10, 6, 0.36);
+}
+
+.victorian-wax-btn:hover {
+  background: linear-gradient(180deg, #8F3123 0%, #722218 100%);
+}
+
+/* Top-down British walnut/oak desk surface fallback */
+.bg-wood-tabletop {
+  background-color: #4D321E;
+  background-image:
+    radial-gradient(circle at 50% 18%, rgba(255, 218, 148, 0.16) 0%, transparent 52%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(36, 20, 10, 0.08) 0px,
+      rgba(36, 20, 10, 0.08) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    linear-gradient(170deg, #684429 0%, #4E321D 52%, #382213 100%);
+}
+
+/* Hand-carved vintage ivory/boxwood rune plaque resting on leather blotter */
+.wood-plaque {
+  background: linear-gradient(180deg, #FAF1DB 0%, #EADAB6 100%);
+  border: 1.5px solid #241B14;
+  box-shadow: 0 5px 0 #7C5C39, 0 9px 16px rgba(14, 9, 5, 0.42);
+}
+
+.wood-plaque-selected {
+  background: linear-gradient(180deg, #5F2228 0%, #44161A 100%);
+  border: 1.5px solid #C89F55;
+  box-shadow: 0 4px 0 #260B0E, 0 8px 16px rgba(14, 6, 4, 0.48);
+}
+
+/* Recessed tarnished brass slot mounted on the burgundy leather desk blotter */
+.brass-slot-empty {
+  background: rgba(34, 12, 14, 0.45);
+  border: 1.5px dashed #C89F55;
+}
+
+.brass-slot-filled {
+  background: linear-gradient(180deg, #FDF6E5 0%, #EFE1C1 100%);
+  border: 2px solid #B58B42;
+  box-shadow: 0 4px 10px rgba(12, 8, 4, 0.42);
+}
+
+/* Open book 3D spine curvature & thick stacked paper block edges */
+.book-gutter-left {
+  background:
+    linear-gradient(90deg, #F6EFE0 0%, #FCF8EE 65%, #F2E9D6 90%, #D9C8AA 97%, #B8A382 100%);
+}
+
+.book-gutter-right {
+  background:
+    linear-gradient(270deg, #F6EFE0 0%, #FCF8EE 65%, #F2E9D6 90%, #D9C8AA 97%, #B8A382 100%);
+}
+
+.book-page-stack-left {
+  box-shadow:
+    -3px 2px 0 #F2EAD8,
+    -4px 2px 0 #C8B798,
+    -7px 4px 0 #ECE1CC,
+    -8px 4px 0 #BCA989,
+    -11px 6px 0 #E4D7BF,
+    -12px 6px 0 #B19E7D,
+    -16px 12px 24px rgba(20, 12, 5, 0.45);
+}
+
+.book-page-stack-right {
+  box-shadow:
+    3px 2px 0 #F2EAD8,
+    4px 2px 0 #C8B798,
+    7px 4px 0 #ECE1CC,
+    8px 4px 0 #BCA989,
+    11px 6px 0 #E4D7BF,
+    12px 6px 0 #B19E7D,
+    16px 12px 24px rgba(20, 12, 5, 0.45);
+}
+
+/* Hand-torn Deckle-Edge Paper Border (border-image) + Worn Pseudo-Element Curvature */
+.deckle-edge-sheet {
+  position: relative;
+  border-style: solid;
+  border-width: 7px;
+  border-color: transparent;
+  background-clip: padding-box;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath fill='%23F0E3C6' fill-rule='evenodd' stroke='%23AD9063' stroke-width='1.1' stroke-linejoin='round' d='M4 5 L10 2 L16 6 L23 3 L29 5 L36 2 L43 6 L50 3 L57 5 L64 2 L71 6 L78 3 L85 5 L91 3 L94 9 L91 16 L94 23 L90 30 L94 37 L91 44 L94 51 L90 58 L94 65 L91 72 L94 79 L91 86 L93 92 L86 94 L79 91 L72 94 L65 90 L58 94 L51 91 L44 94 L37 90 L30 94 L23 91 L16 94 L9 91 L3 92 L5 85 L2 78 L6 71 L3 64 L5 57 L2 50 L6 43 L3 36 L5 29 L2 22 L6 15 L3 9 Z M16 16 L80 16 L80 80 L16 80 Z'/%3E%3C/svg%3E");
+  border-image-slice: 16;
+  border-image-repeat: round;
+}
+
+@media (min-width: 768px) {
+  .deckle-edge-left {
+    border-right-width: 0;
+  }
+  .deckle-edge-right {
+    border-left-width: 0;
+  }
+}
+
+.deckle-edge-left::before,
+.deckle-edge-right::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.deckle-edge-left::before {
+  background-image:
+    linear-gradient(90deg, rgba(138, 102, 58, 0.11) 0%, transparent 7%, transparent 88%, rgba(255, 252, 242, 0.22) 93%, rgba(132, 96, 54, 0.08) 97%, rgba(102, 70, 36, 0.14) 100%),
+    linear-gradient(90deg, transparent 28px, rgba(154, 70, 52, 0.11) 28px, rgba(154, 70, 52, 0.11) 29px, transparent 29px, transparent 32px, rgba(154, 70, 52, 0.06) 32px, rgba(154, 70, 52, 0.06) 33px, transparent 33px),
+    radial-gradient(ellipse at 14% 12%, rgba(178, 138, 84, 0.11), transparent 44%),
+    radial-gradient(ellipse at 12% 90%, rgba(168, 128, 76, 0.13), transparent 48%);
+  box-shadow:
+    inset 8px 0 18px rgba(132, 98, 56, 0.09),
+    inset -12px 0 18px rgba(108, 76, 40, 0.1);
+}
+
+.deckle-edge-right::before {
+  background-image:
+    linear-gradient(270deg, rgba(138, 102, 58, 0.11) 0%, transparent 7%, transparent 88%, rgba(255, 252, 242, 0.22) 93%, rgba(132, 96, 54, 0.08) 97%, rgba(102, 70, 36, 0.14) 100%),
+    radial-gradient(ellipse at 86% 16%, rgba(178, 138, 84, 0.11), transparent 44%),
+    radial-gradient(ellipse at 86% 88%, rgba(168, 128, 76, 0.13), transparent 48%);
+  box-shadow:
+    inset -8px 0 18px rgba(132, 98, 56, 0.09),
+    inset 12px 0 18px rgba(108, 76, 40, 0.1);
+}
+
+.deckle-edge-left::after,
+.deckle-edge-right::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+}
+
+.deckle-edge-left::after {
+  background-image:
+    linear-gradient(42deg, rgba(128, 92, 52, 0.16) 0%, rgba(246, 238, 218, 0.42) 11px, transparent 20px),
+    radial-gradient(circle at 0% 35%, rgba(146, 108, 62, 0.12), transparent 14px),
+    radial-gradient(circle at 0% 72%, rgba(146, 108, 62, 0.11), transparent 16px);
+}
+
+.deckle-edge-right::after {
+  background-image:
+    linear-gradient(318deg, rgba(128, 92, 52, 0.16) 0%, rgba(246, 238, 218, 0.42) 11px, transparent 20px),
+    radial-gradient(circle at 100% 28%, rgba(146, 108, 62, 0.11), transparent 14px),
+    radial-gradient(circle at 100% 68%, rgba(146, 108, 62, 0.12), transparent 16px);
+}
+
+.deckle-edge-spread::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    linear-gradient(90deg, rgba(138, 102, 58, 0.11) 0%, transparent 5%, transparent 95%, rgba(138, 102, 58, 0.11) 100%),
+    radial-gradient(ellipse at 12% 12%, rgba(178, 138, 84, 0.1), transparent 44%),
+    radial-gradient(ellipse at 88% 88%, rgba(168, 128, 76, 0.12), transparent 46%);
+  box-shadow: inset 0 0 24px rgba(124, 88, 48, 0.12);
+}
+
+.deckle-edge-spread::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -1px;
+  z-index: 2;
+  background-image:
+    linear-gradient(42deg, rgba(128, 92, 52, 0.15) 0%, rgba(246, 238, 218, 0.42) 14px, transparent 26px),
+    linear-gradient(318deg, rgba(128, 92, 52, 0.15) 0%, rgba(246, 238, 218, 0.42) 14px, transparent 26px);
+}
+
+.book-heavy-stack-left {
+  box-shadow:
+    -2px 1px 0 #F2E7CD,
+    -4px 2px 0 #B39A72,
+    -6px 3px 0 #ECE0C2,
+    -8px 4px 0 #A88E66,
+    -10px 5px 0 #E5D6B4,
+    -12px 6px 0 #9B8058,
+    -15px 8px 0 #DECBA2,
+    -17px 9px 0 #7E6542,
+    -22px 16px 28px rgba(18, 10, 4, 0.44);
+}
+
+.book-heavy-stack-right {
+  box-shadow:
+    2px 1px 0 #F2E7CD,
+    4px 2px 0 #B39A72,
+    6px 3px 0 #ECE0C2,
+    8px 4px 0 #A88E66,
+    10px 5px 0 #E5D6B4,
+    12px 6px 0 #9B8058,
+    15px 8px 0 #DECBA2,
+    17px 9px 0 #7E6542,
+    22px 16px 28px rgba(18, 10, 4, 0.44);
+}
+
+@keyframes pageFlipSweepNext {
+  0% {
+    opacity: 0.72;
+    transform: translate3d(28%, 0, 0) scaleX(1.08);
+  }
+  50% {
+    opacity: 0.45;
+    transform: translate3d(-4%, 0, 0) scaleX(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-32%, 0, 0) scaleX(0.92);
+  }
+}
+
+@keyframes pageFlipSweepPrev {
+  0% {
+    opacity: 0.72;
+    transform: translate3d(-28%, 0, 0) scaleX(1.08);
+  }
+  50% {
+    opacity: 0.45;
+    transform: translate3d(4%, 0, 0) scaleX(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(32%, 0, 0) scaleX(0.92);
+  }
+}
+
+.animate-page-sweep-next {
+  animation: pageFlipSweepNext 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-page-sweep-prev {
+  animation: pageFlipSweepPrev 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* 3D Cylindrical Standing Book Spine Lighting */
+.book-spine-3d {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.08) 24%,
+    rgba(0, 0, 0, 0.04) 58%,
+    rgba(0, 0, 0, 0.24) 86%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+}
+
+/* Gentle floating & sunlit shimmering dust mote animations (compositor-only) */
+@keyframes floatMote {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.85);
+    opacity: 0.08;
+  }
+  25% {
+    transform: translate3d(9px, -12px, 0) scale(1.1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate3d(16px, -24px, 0) scale(0.95);
+    opacity: 0.32;
+  }
+  75% {
+    transform: translate3d(6px, -34px, 0) scale(1.15);
+    opacity: 0.78;
+  }
+  100% {
+    transform: translate3d(-4px, -46px, 0) scale(0.85);
+    opacity: 0.08;
+  }
+}
+
+@keyframes dustShimmer {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.75);
+    opacity: 0.14;
+  }
+  45% {
+    transform: translate3d(-10px, -14px, 0) scale(1.25);
+    opacity: 0.85;
+  }
+  70% {
+    transform: translate3d(-16px, -22px, 0) scale(0.9);
+    opacity: 0.35;
+  }
+}
+
+.animate-mote {
+  animation: floatMote 9s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-dust-shimmer {
+  animation: dustShimmer 7.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes gentleSteam {
+  0% {
+    transform: translate3d(0, 4px, 0) scale(0.92);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(-4px, -14px, 0) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-steam {
+  animation: gentleSteam 3.2s ease-out infinite;
+}
+
+/* Seasonal library wing atmospheric particles (compositor-only) */
+@keyframes wingFloatUp {
+  0% {
+    transform: translate3d(0, 8px, 0) scale(0.85);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.78;
+  }
+  75% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(12px, -36px, 0) scale(1.08);
+    opacity: 0;
+  }
+}
+
+@keyframes wingLeafDrift {
+  0% {
+    transform: translate3d(-6px, -14px, 0) rotate(-10deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.76;
+  }
+  80% {
+    opacity: 0.62;
+  }
+  100% {
+    transform: translate3d(16px, 34px, 0) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes wingFrostHover {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(0.92);
+    opacity: 0.42;
+  }
+  50% {
+    transform: translate3d(4px, -6px, 0) scale(1.12);
+    opacity: 0.88;
+  }
+}
+
+.animate-wing-float {
+  animation: wingFloatUp 7.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-wing-leaf {
+  animation: wingLeafDrift 9.2s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-wing-frost {
+  animation: wingFrostHover 5.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Hand-drawn watercolor paper & woodgrain texture overlays */
+.woodgrain-ink-overlay {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(36, 27, 20, 0.09) 0px,
+      rgba(36, 27, 20, 0.09) 1px,
+      transparent 1px,
+      transparent 11px,
+      rgba(255, 232, 188, 0.05) 11px,
+      rgba(255, 232, 188, 0.05) 12px,
+      transparent 12px,
+      transparent 23px
+    );
+}
+
+@keyframes gearSpinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-gear-spin {
+  animation: gearSpinSlow 9s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes gearSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-gear-spin-reverse {
+  animation: gearSpinReverse 7s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes noteFloatRise {
+  0% {
+    opacity: 0.95;
+    transform: translate3d(0, 4px, 0) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0) scale(1.12);
+  }
+}
+
+.animate-note-rise {
+  animation: noteFloatRise 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* 3D Vintage Copperplate Tarot Card Flip & Aged Parchment Patina */
+.tarot-perspective {
+  perspective: 1100px;
+}
+
+.tarot-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.tarot-inner.tarot-flipped {
+  transform: rotateY(180deg);
+}
+
+.tarot-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.tarot-back {
+  transform: rotateY(180deg);
+}
+
+.tarot-vellum {
+  background:
+    radial-gradient(circle at 22% 16%, rgba(255, 252, 240, 0.85), transparent 46%),
+    radial-gradient(circle at 82% 84%, rgba(162, 126, 72, 0.24), transparent 52%),
+    radial-gradient(circle at 15% 88%, rgba(145, 108, 60, 0.18), transparent 44%),
+    linear-gradient(172deg, #F8EED4 0%, #EFE0BC 54%, #DFC89A 100%);
+  box-shadow:
+    inset 0 0 18px rgba(105, 72, 34, 0.22),
+    0 8px 18px rgba(12, 8, 4, 0.42);
+}
+
+.tarot-taboo-vellum {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(154, 72, 54, 0.28), transparent 56%),
+    linear-gradient(175deg, #4E2721 0%, #371915 62%, #29120F 100%);
+  box-shadow:
+    inset 0 0 16px rgba(18, 6, 4, 0.48),
+    0 8px 18px rgba(12, 8, 4, 0.45);
+}
+
+.tarot-stone-vellum {
+  background:
+    radial-gradient(circle at 24% 20%, rgba(255, 252, 248, 0.55), transparent 45%),
+    linear-gradient(172deg, #E2DDD5 0%, #CBC4BA 56%, #B4ABA0 100%);
+  box-shadow:
+    inset 0 0 16px rgba(48, 42, 38, 0.22),
+    0 8px 18px rgba(12, 8, 4, 0.4);
+}
+
+.tarot-ember-vellum {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 244, 206, 0.82), transparent 52%),
+    linear-gradient(172deg, #F9E9C2 0%, #EBC988 58%, #D8A95A 100%);
+  box-shadow:
+    inset 0 0 16px rgba(132, 74, 22, 0.26),
+    0 8px 18px rgba(12, 8, 4, 0.42);
+}
+
+.tarot-paired-vellum {
+  background:
+    radial-gradient(circle at 50% 20%, rgba(226, 184, 110, 0.24), transparent 58%),
+    linear-gradient(175deg, #5B2228 0%, #42161B 65%, #2D0D11 100%);
+  box-shadow:
+    inset 0 0 18px rgba(16, 4, 6, 0.5),
+    0 8px 18px rgba(14, 8, 5, 0.46);
+}
+
+.tarot-copperplate-back {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(168, 128, 68, 0.24), transparent 68%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(220, 184, 118, 0.05) 0px,
+      rgba(220, 184, 118, 0.05) 1px,
+      transparent 1px,
+      transparent 9px
+    ),
+    linear-gradient(172deg, #3A271A 0%, #271910 56%, #1B100A 100%);
+  box-shadow:
+    inset 0 0 18px rgba(10, 6, 3, 0.56),
+    0 8px 18px rgba(12, 8, 4, 0.45);
+}
+
+@keyframes bookDecipherGlow {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-book-complete {
+  animation: bookDecipherGlow 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes bookCoverFold {
+  0% {
+    opacity: 0.78;
+    transform: perspective(1200px) scaleX(1.22) scaleY(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) scaleX(1) scaleY(1);
+  }
+}
+
+.animate-book-fold {
+  animation: bookCoverFold 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes doorwayReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-doorway-reveal {
+  animation: doorwayReveal 460ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-mote,
+  .animate-dust-shimmer,
+  .animate-steam,
+  .animate-wing-float,
+  .animate-wing-leaf,
+  .animate-wing-frost,
+  .animate-gear-spin,
+  .animate-gear-spin-reverse,
+  .animate-note-rise,
+  .animate-page-sweep-next,
+  .animate-page-sweep-prev,
+  .animate-book-complete,
+  .animate-book-fold,
+  .animate-doorway-reveal {
+    animation: none !important;
+  }
+  .tarot-inner {
+    transition: none !important;
+  }
+}
+
+/* Clean custom scrollbars for book pages & archive */
+.library-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.library-scroll::-webkit-scrollbar-track {
+  background: rgba(120, 100, 80, 0.08);
+  border-radius: 999px;
+}
+.library-scroll::-webkit-scrollbar-thumb {
+  background: rgba(120, 100, 80, 0.28);
+  border-radius: 999px;
+}
+.library-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 100, 80, 0.45);
+}
