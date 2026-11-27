@@ -5,6 +5,7 @@ import { DeskWorkbench } from './components/DeskWorkbench';
 import { ResilientImage } from './components/EvidenceIcon';
 import { KnotResolutionModal } from './components/KnotResolutionModal';
 import { EvidenceConfront } from './components/EvidenceConfront';
+import { TarotRite } from './components/TarotRite';
 import { LibraryStage } from './components/LibraryStage';
 import { OutdoorCinematic } from './components/OutdoorCinematic';
 import { SeasonEntrance } from './components/SeasonEntrance';
@@ -219,7 +220,8 @@ export default function App() {
         DESK_DIALOGUE: `花茶余温提示：请留意对话笺右上角书脊号 ${currentCase.bookCallNumber}，前往书架寻回《${currentCase.bookTitle}》。`,
         SHELF_SEARCH: `花茶余温提示：目标《${currentCase.bookTitle}》的索书号为 ${currentCase.bookCallNumber}。`,
         BOOK_INSPECTION: `花茶余温提示：若第 4 页印记模糊，记得拿起左上角的黄铜放大镜照亮淡墨线索。`,
-        CONFRONTATION: `花茶余温提示：她说的是自己的错，先找出能推翻它的一件东西。`,
+        CONFRONTATION: `花茶余温提示：她说的是自己的错，先找出能推翻它的两件东西。`,
+        TAROT_RITE: `花茶余温提示：先配对，再按书页里的先后把牌钉回时间线。`,
         KNOT_RESOLUTION: `花茶余温提示：洋甘菊茶已安抚 ${currentCase.guestName} 的心绪，入梦牌桌上已自动浮现破咒护佑。`,
         CASE_CLEARED: TEA_NOTES[guestIndex % TEA_NOTES.length],
       };
@@ -405,7 +407,8 @@ export default function App() {
         onOpenConfront={handleOpenConfront}
         onOpenKnotModal={() => {
           libraryAudio.playMagicChime();
-          setIsKnotModalOpen(true);
+          setIsBookModalOpen(false);
+          setPhase('TAROT_RITE');
         }}
         onCollectGift={handleCollectGift}
         onNextGuest={handleNextGuest}
@@ -456,9 +459,18 @@ export default function App() {
           collectedEvidenceIds={collectedEvidenceIds}
           onPass={() => {
             libraryAudio.playMagicChime();
-            setPhase('KNOT_RESOLUTION');
-            setIsKnotModalOpen(true);
+            setPhase('TAROT_RITE');
           }}
+          onClose={() => setPhase('BOOK_INSPECTION')}
+        />
+      )}
+
+      {/* 梦境牌桌 · 配对 → 时间线 → 落印 */}
+      {phase === 'TAROT_RITE' && (
+        <TarotRite
+          currentCase={currentCase}
+          hasServedTea={hasServedTea}
+          onResolveSuccess={handleResolveSuccess}
           onClose={() => setPhase('BOOK_INSPECTION')}
         />
       )}

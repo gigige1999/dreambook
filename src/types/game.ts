@@ -7,6 +7,7 @@ export type GamePhase =
   | 'SHELF_SEARCH'
   | 'BOOK_INSPECTION'
   | 'CONFRONTATION'
+  | 'TAROT_RITE'
   | 'KNOT_RESOLUTION'
   | 'CASE_CLEARED';
 
